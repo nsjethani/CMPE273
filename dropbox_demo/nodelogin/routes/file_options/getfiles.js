@@ -40,6 +40,9 @@ var FileList=function (req,res){
             var file = {};
             file.path = path;
             file.name = files[i];
+            var fullfile = file.path + '/' + files[i];
+            file.isdir = fs.statSync(fullfile).isDirectory();
+            console.log(fs.statSync(fullfile).isDirectory());
             sendFiles.push(file);
         }
         console.log(JSON.stringify(sendFiles));

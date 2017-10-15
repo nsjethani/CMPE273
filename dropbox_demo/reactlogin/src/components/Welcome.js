@@ -28,6 +28,7 @@ class Welcome extends Component {
                 if (status.status == 201) {
                    // this.props.signout();
                     console.log("logged out");
+                    this.props.history.push("/login");
                 }
             })
     }

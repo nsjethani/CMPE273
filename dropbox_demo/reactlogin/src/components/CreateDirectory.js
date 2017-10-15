@@ -59,9 +59,11 @@ export class createDir extends Component{
                 enableView:false,
                 files: [],
                 rootdir:'',
+                pathHistory : [],
                 userid:'',
                 newdirname:'',
-                newdirlen:0
+                newdirlen:0,
+                enableView:false
             };
         }
         componentWillMount(){
@@ -82,10 +84,11 @@ export class createDir extends Component{
 
         getfile= (filepath) =>{
             var data = {'dir':filepath};
+
             API.getfiles(data)
                 .then((res) => {
                     if (res.status === '201') {
-
+                        console.log(res.filelist);
                         this.setState({
                             files: res.filelist
                         });
@@ -102,6 +105,32 @@ export class createDir extends Component{
                     FileDownload(res.data, filename);
 
                 })
+        };
+
+        createFolder= (newdirname) =>{
+            var dirpath = "";
+            var index = this.state.pathHistory;
+            if(this.state.pathHistory.length>0){
+                dirpath = (this.state.pathHistory[index-1]);
+            }else{
+                dirpath = (this.state.rootdir);
+            }
+            console.log("I am in create folder with path ", dirpath);
+            var data = {'foldername':newdirname, 'dirpath': dirpath};
+            API.createdir(data)
+                .then((status) => {
+                    if (status.status === '201') {
+                        console.log("Folder created :)")
+                        this.getfile(dirpath);
+                    }
+                });
+        };
+
+        onFolderClick= (dirpath,dirname) =>{
+             var newpath = dirpath+'/'+dirname
+                console.log(newpath, "has been clicked");
+                this.setState({rootdir:newpath},this.getfile(newpath));
+                ;
         };
 
         handleFileUpload = (event) => {
@@ -121,6 +150,7 @@ export class createDir extends Component{
                 });
 
         };
+
 
         renderPage()
         {
@@ -188,9 +218,17 @@ export class createDir extends Component{
                         <div className="col-xs-6 col-md-6 col-sm-6">
                             <table className="table" style={tablestyle}>
                                     {this.state.files.map(file=>
-                                        <tr >
-                                            <a onClick={()=>this.downloadfile(file.path,file.name)}>{file.name}</a>
+                                        (file.isdir) ?
+                                        (
+                                        <tr>
+                                            <button onClick={()=>this.onFolderClick(file.path, file.name)}>{file.name}</button>
                                         </tr>
+                                        )
+                                    :(
+                                        <tr>
+                                        <a onClick={() => this.downloadfile(file.path, file.name)}>{file.name}</a>
+                                        </tr>
+                                        )
                                     )}
 
                             </table>
@@ -218,14 +256,11 @@ export class createDir extends Component{
                                        }}
 
                                 />
-                                <button disabled={this.state.newdirlen<=0}>Create</button>
+                                <button disabled={this.state.newdirlen<=0} onClick={()=>this.createFolder(this.state.newdirname)}>Create</button>
                             </div>
                         </div>
-
-                        </div>
-
-                    </div>)
-            }
+                    </div>
+                        )}
 
 
         render()

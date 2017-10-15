@@ -1,0 +1,6 @@
+to add es6
+npm install --save-dev 6to5-loader
+
+npm install babel-loader webpack --save-dev.
+
+"6to5-loader": "^3.0.0",

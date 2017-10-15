@@ -127,3 +127,23 @@ export const logout = (payload) =>
             console.log("This is error");
             return error;
         });
+
+export const createdir = (payload) =>
+
+    fetch(`${api}/createdir`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload),
+        credentials:'include'
+    }).then(res => res.json())
+        .then(res =>{
+        return res;
+    })
+        .catch(error => {
+            console.log("This is error while creating directory.");
+            return error;
+        });
+

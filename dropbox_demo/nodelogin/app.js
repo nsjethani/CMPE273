@@ -13,6 +13,7 @@ var signup = require('./routes/signup');
 var files = require('./routes/files');
 var download_file = require('./routes/file_options/download_file');
 var listfiles = require('./routes/file_options/getfiles');
+var file = require('./routes/file_options/createdir')
 var logout = require('./routes/logout');
 var app = express();
 
@@ -49,6 +50,7 @@ app.use('/files',files);
 app.post('/getfiles', listfiles.FileList);
 app.post('/logout',logout.logout);
 app.post('/downloadfile',download_file.downloadfile );
+app.post('/createdir',file.createdir);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
