@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Adapter</title>
+  <script>
+  class AdapteeParent {
+	  printMessage (msg){
+          console.log(msg)
+      };
+  }
+  
+  class Target {
+      constructor(){
+      }
+      sayHello (){
+          throw "Error it is abstract class";
+      };
+  }
+  
+  class Adapter extends AdapteeParent {
+       sayHello(){
+    	   super.printMessage( "Hello" );
+       }
+      }
+  
+  class Client {
+      runTest ()
+      {
+          let obj = new Adapter() ;
+          obj.sayHello();
+          
+      }
+      
+  }
+  
+  function runTest()
+  {
+	  let c = new Client();
+	  c.runTest();
+  }
+  
+  </script>
+</head>
+<body>
+  <h3>Click on the below button to execute design pattern example for Adapter</h3>
+  <input type="button" value="Examine" onclick="runTest()">
+</body>
+</html>

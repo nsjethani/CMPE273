@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chain Of Responsibility</title>
+  <script>
+
+      class Handler {
+          handleRequest(request ) {
+              throw "Error: This is abstract class";
+          };
+          setSuccessor(next){
+              throw "Error: This is abstract class";
+          };
+      }
+
+      class ConcreteHandler1 extends Handler {
+          handleRequest(request) {
+			  console.log( "R1 got the request..");
+              if ( request==="R1")
+              {
+	              console.log( this.constructor.name + " This one is mine!");
+              }
+              else
+              {
+                  if ( this.successor !== undefined )
+                      this.successor.handleRequest(request);
+              }
+
+          }
+
+          setSuccessor(next) {
+              this.successor = next ;
+          }
+      }
+
+      class ConcreteHandler2 extends Handler {
+          handleRequest(request) {
+	          console.log("R2 got the request...");
+              if ( request==="R2")
+              {
+            	 console.log(this.constructor.name + " => This one is mine!s");
+              }
+              else
+              {
+                  if ( this.successor !== undefined )
+                      this.successor.handleRequest(request);
+              }
+
+          }
+
+          setSuccessor(next) {
+              this.successor = next ;
+          }
+      }
+
+      class ConcreteHandler3 extends Handler {
+          handleRequest(request) {
+	          console.log("R3 got the request...");
+              if ( request==="R3" )
+              {
+	              console.log( this.constructor.name + " => This one is mine!");
+              }
+              else
+              {
+                  if ( this.successor !== undefined )
+                      this.successor.handleRequest(request);
+              }
+
+          }
+
+          setSuccessor(next) {
+              this.successor = next ;
+          }
+      }
+
+      class Client {
+          constructor(){
+          }
+
+          runTest ()
+          {
+              let h1 = new ConcreteHandler1() ;
+              let h2 = new ConcreteHandler2() ;
+              let h3 = new ConcreteHandler3() ;
+
+              h1.setSuccessor(h2);
+              h2.setSuccessor(h3);
+
+              console.log( "Sending R2...");
+              h1.handleRequest("R2");
+              console.log( "Sending R3...");
+              h1.handleRequest("R3");
+			  console.log("Sending R1...");
+              h1.handleRequest("R1");
+			  console.log("Sending RX...");
+              h1.handleRequest("RX");
+          }
+
+      }
+
+      function runTest() {
+          let c = new Client();
+          c.runTest();
+      }
+
+  </script>
+</head>
+<body>
+<h3>Click on the below button to execute design pattern example for chain of responsibility</h3>
+  <input type="button" value="Run" onclick="runTest()">
+</body>
+</html>

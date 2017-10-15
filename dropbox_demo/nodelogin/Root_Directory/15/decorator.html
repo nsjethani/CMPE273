@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Decorator</title>
+  <script>
+
+      class Component {
+          constructor(){
+          }
+          operation (){
+              throw "Error it is abstract class";
+          };
+      }
+
+
+      class ConcreteComponent extends Component {
+          operation () {
+              return "Hello World!";
+          }
+      }
+
+      class Decorator extends Component {
+          constructor(component) {
+              super();
+              this.component = component;
+          }
+
+          operation()
+          {
+              return this.component.operation() ;
+          }
+      }
+
+      class ConcreteDecoratorA extends Decorator {
+
+          constructor(c){
+              super(c);
+          }
+
+          operation ()
+          {
+              this.addedState = super.operation() ;
+              return this.addedBehavior( this.addedState ) ;
+          }
+
+          addedBehavior(input) {
+              return "<h1> " + input + "</h1> ";
+          }
+      }
+
+      class ConcreteDecoratorB extends Decorator {
+
+
+          constructor(c){
+              super(c);
+          }
+
+          operation ()
+          {
+              this.addedState = super.operation() ;
+              return this.addedBehavior( this.addedState ) ;
+          }
+
+          addedBehavior(input) {
+              return "<em> " + input + "</em> " ;
+          }
+      }
+
+      class Tester {
+
+          runTest ()
+          {
+              let obj = new ConcreteDecoratorB( new ConcreteDecoratorA( new ConcreteComponent() ) ) ;
+              let result = obj.operation() ;
+              console.log( result );
+          }
+
+      }
+
+
+      function main() {
+          let t = new Tester();
+          t.runTest();
+      }
+
+  </script>
+</head>
+<body>
+ <h3>Click on the below button to execute design pattern example for decorator</h3>
+  <input type="button" value="Examine" onclick="main()">
+</body>
+</html>

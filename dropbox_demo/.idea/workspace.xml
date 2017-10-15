@@ -1,0 +1,825 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="59efd9b0-7b37-4610-89dc-3fa5f4403ddd" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>create</find>
+      <find>do</find>
+      <find>UserProfile</find>
+      <find>child</find>
+      <find>MainLayout</find>
+      <find>files</find>
+      <find>reqPass</find>
+      <find>crEATEDIR</find>
+      <find>filelist</find>
+      <find>Message</find>
+      <find>message</find>
+      <find>upl</find>
+      <find>handleSubmit</find>
+      <find>sess</find>
+      <find>log</find>
+      <find>path</find>
+      <find>session</find>
+      <find>loca</find>
+      <find>signout</find>
+      <find>download</find>
+      <find>uplo</find>
+      <find>conso</find>
+      <find>upload</find>
+      <find>rootdir</find>
+      <find>handleFileUpload</find>
+      <find>state</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/reactlogin/src/components/userprofile.js" />
+        <option value="$PROJECT_DIR$/nodelogin/routes/download_file.js" />
+        <option value="$PROJECT_DIR$/MobileTearSheet.js" />
+        <option value="$PROJECT_DIR$/reactlogin/src/components/Login.js" />
+        <option value="$PROJECT_DIR$/reactlogin/src/components/MainPageHeader.js" />
+        <option value="$PROJECT_DIR$/nodelogin/routes/userprofile.js" />
+        <option value="$PROJECT_DIR$/reactlogin/src/App.css" />
+        <option value="$PROJECT_DIR$/nodelogin/package.json" />
+        <option value="$PROJECT_DIR$/nodelogin/bin/www" />
+        <option value="$PROJECT_DIR$/nodelogin/routes/mysql.js" />
+        <option value="$PROJECT_DIR$/reactlogin/src/components/NewerHomePage.js" />
+        <option value="$PROJECT_DIR$/nodelogin/routes/users.js" />
+        <option value="$PROJECT_DIR$/nodelogin/routes/signup.js" />
+        <option value="$PROJECT_DIR$/nodelogin/routes/signout.js" />
+        <option value="$PROJECT_DIR$/nodelogin/routes/logout.js" />
+        <option value="$PROJECT_DIR$/reactlogin/src/components/Welcome.js" />
+        <option value="$PROJECT_DIR$/nodelogin/app.js" />
+        <option value="$PROJECT_DIR$/reactlogin/package.json" />
+        <option value="$PROJECT_DIR$/nodelogin/routes/file_options/getfiles.js" />
+        <option value="$PROJECT_DIR$/nodelogin/routes/file_options/download_file.js" />
+        <option value="$PROJECT_DIR$/reactlogin/src/api/API.js" />
+        <option value="$PROJECT_DIR$/nodelogin/routes/files.js" />
+        <option value="$PROJECT_DIR$/reactlogin/src/components/CreateDirectory.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/nodelogin/node_modules" />
+    <handled-path value="$PROJECT_DIR$/nodelogin/node_modules_old/body-parser/node_modules" />
+    <handled-path value="$PROJECT_DIR$/nodelogin/node_modules_old/clean-css/node_modules" />
+    <handled-path value="$PROJECT_DIR$/nodelogin/node_modules_old/cliui/node_modules" />
+    <handled-path value="$PROJECT_DIR$/nodelogin/node_modules_old/cryptiles/node_modules" />
+    <handled-path value="$PROJECT_DIR$/nodelogin/node_modules_old/express/node_modules" />
+    <handled-path value="$PROJECT_DIR$/nodelogin/node_modules_old/morgan/node_modules" />
+    <handled-path value="$PROJECT_DIR$/nodelogin/node_modules_old/rc/node_modules" />
+    <handled-path value="$PROJECT_DIR$/nodelogin/node_modules_old/request/node_modules" />
+    <handled-path value="$PROJECT_DIR$/nodelogin/node_modules_old/transformers/node_modules" />
+    <handled-path value="$PROJECT_DIR$/nodelogin/node_modules_old/uglify-js/node_modules" />
+    <handled-path value="$PROJECT_DIR$/nodelogin/node_modules_old/with/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/acorn-dynamic-import/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/acorn-globals/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/acorn-jsx/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/ansi-align/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/babel-register/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/babel-runtime/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/boxen/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/browser-resolve/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/buffer/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/camelcase-keys/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/caniuse-api/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/chalk/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/cliui/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/configstore/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/cosmiconfig/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/cryptiles/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/css-loader/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/css-selector-tokenizer/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/cssnano/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/doctrine/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/dom-converter/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/dom-serializer/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/escodegen/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/eslint-module-utils/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/eslint-plugin-import/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/eslint/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/express/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/handlebars/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/html-webpack-plugin/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/htmlparser2/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/http-errors/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/http-proxy-middleware/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/inquirer/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/isobject/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/istanbul-lib-report/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/jest-runtime/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/jest/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/jsdom/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/loader-fs-cache/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/md5.js/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/meow/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/node-libs-browser/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/optimist/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/original/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/portfinder/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-calc/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-colormin/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-convert-values/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-discard-comments/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-discard-duplicates/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-discard-empty/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-discard-overridden/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-discard-unused/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-filter-plugins/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-merge-idents/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-merge-longhand/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-merge-rules/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-minify-font-values/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-minify-gradients/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-minify-params/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-minify-selectors/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-normalize-charset/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-normalize-url/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-ordered-values/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-reduce-idents/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-reduce-initial/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-reduce-transforms/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-svgo/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-unique-selectors/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss-zindex/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/postcss/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/randomatic/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/rc/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/react-dev-utils/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/react-error-overlay/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/react-scripts/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/read-pkg-up/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/readable-stream/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/recursive-readdir/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/reduce-css-calc/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/reduce-function-call/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/regjsparser/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/renderkid/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/resolve/test/resolver/symlinked/_/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/sane/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/send/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/sockjs/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/string-width/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/table/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/uglifyjs-webpack-plugin/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/url-parse/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/url/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/util/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/webpack-dev-server/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/webpack-manifest-plugin/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/webpack-sources/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/webpack/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/whatwg-encoding/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/whatwg-url/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/widest-line/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/wrap-ansi/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/yargs-parser/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactlogin/node_modules_old/yargs/node_modules" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="22" />
+    <option name="width" value="1440" />
+    <option name="height" value="878" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="LoginAppReactJS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LoginAppReactJS" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LoginAppReactJS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LoginAppReactJS" type="462c0819:PsiDirectoryNode" />
+              <item name="nodelogin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LoginAppReactJS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LoginAppReactJS" type="462c0819:PsiDirectoryNode" />
+              <item name="nodelogin" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LoginAppReactJS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LoginAppReactJS" type="462c0819:PsiDirectoryNode" />
+              <item name="nodelogin" type="462c0819:PsiDirectoryNode" />
+              <item name="Root_Directory" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LoginAppReactJS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LoginAppReactJS" type="462c0819:PsiDirectoryNode" />
+              <item name="nodelogin" type="462c0819:PsiDirectoryNode" />
+              <item name="Root_Directory" type="462c0819:PsiDirectoryNode" />
+              <item name="15" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LoginAppReactJS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LoginAppReactJS" type="462c0819:PsiDirectoryNode" />
+              <item name="nodelogin" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LoginAppReactJS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LoginAppReactJS" type="462c0819:PsiDirectoryNode" />
+              <item name="nodelogin" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="file_options" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LoginAppReactJS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LoginAppReactJS" type="462c0819:PsiDirectoryNode" />
+              <item name="reactlogin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LoginAppReactJS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LoginAppReactJS" type="462c0819:PsiDirectoryNode" />
+              <item name="reactlogin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LoginAppReactJS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LoginAppReactJS" type="462c0819:PsiDirectoryNode" />
+              <item name="reactlogin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LoginAppReactJS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LoginAppReactJS" type="462c0819:PsiDirectoryNode" />
+              <item name="reactlogin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="node.js.path.for.package.jscs" value="project" />
+    <property name="node.js.selected.package.jscs" value="" />
+    <property name="JavaScriptPreferStrict" value="false" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Div Code/15 Oct/CMPE273-master/dropbox" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="node.js.detected.package.jscs" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\SONY\WebstormProjects\LoginAppReactJS\LoginAppReactJS\reactlogin\node_modules\material-ui" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\SONY\WebstormProjects\LoginAppReactJS\LoginAppReactJS\reactlogin\src" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Node.js.CreateDirectory.js">
+    <configuration name="CreateDirectory.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="CreateDirectory.js" working-dir="$PROJECT_DIR$/reactlogin/src/components" />
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Node.js.CreateDirectory.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="59efd9b0-7b37-4610-89dc-3fa5f4403ddd" name="Default" comment="" />
+      <created>1507142641838</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1507142641838</updated>
+      <workItem from="1507142702550" duration="27526000" />
+      <workItem from="1507213079878" duration="6315000" />
+      <workItem from="1507233488629" duration="17109000" />
+      <workItem from="1507685249649" duration="7279000" />
+      <workItem from="1507700833702" duration="13454000" />
+      <workItem from="1507716962262" duration="10288000" />
+      <workItem from="1507752418925" duration="1973000" />
+      <workItem from="1507766130008" duration="16876000" />
+      <workItem from="1508024668259" duration="30800000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="131620000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20758928" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36677632" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967105" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36677632" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20758928" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967105" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/nodelogin/routes/file_options/getfiles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="23" lean-forward="false" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/components/Welcome.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/routes/userprofile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/components/HomePage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/components/CreateDirectory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="48" lean-forward="false" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/components/CreateDirectory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="89" lean-forward="false" selection-start-line="29" selection-start-column="89" selection-end-line="29" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/components/NewerHomePage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1564">
+          <caret line="100" column="90" lean-forward="false" selection-start-line="100" selection-start-column="90" selection-end-line="100" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/routes/signup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="60" column="30" lean-forward="true" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/routes/download_file_old.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="28" lean-forward="false" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/routes/mysql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="57" column="35" lean-forward="false" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/components/CreateDirectory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/components/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="73" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/App.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/logo.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/registerServiceWorker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/components/Signup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/Div Code/CMPE273-master/CMPE273-master/dropbox/node/routes/database/mysql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/components/userprofile.js" />
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/MobileTearSheet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="28" lean-forward="true" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/node_modules/material-ui/Typography/Typography.js" />
+    <entry file="file://$PROJECT_DIR$/reactlogin/node_modules/material-ui/Typography/index.js" />
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/components/HomePage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/components/MainPageHeader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="37" lean-forward="false" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/App.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="21" lean-forward="false" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/components/Message.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/bin/www">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/components/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="29" column="52" lean-forward="false" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/routes/userprofile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="19" lean-forward="true" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/routes/signup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/routes/logout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="45" lean-forward="false" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/components/NewerHomePage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/npm-debug.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/components/Welcome.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="43" lean-forward="false" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-428">
+          <caret line="23" column="39" lean-forward="true" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/api/API.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-712">
+          <caret line="50" column="23" lean-forward="true" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/routes/files.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" column="40" lean-forward="true" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/src/components/CreateDirectory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="60" column="27" lean-forward="true" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactlogin/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-848">
+          <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/routes/download_file_old.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="28" lean-forward="false" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/routes/file_options/download_file.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/routes/mysql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="60" column="2" lean-forward="true" selection-start-line="60" selection-start-column="2" selection-end-line="60" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelogin/routes/file_options/getfiles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-119">
+          <caret line="13" column="24" lean-forward="false" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
