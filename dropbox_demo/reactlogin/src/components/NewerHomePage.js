@@ -110,9 +110,6 @@ class NewerHomePage extends Component {
                     <div>
                         <Welcome username={this.state.username} />
                         <div>
-                            <MuiThemeProvider><IconMenuExampleSimple /></MuiThemeProvider>
-                        </div>
-                        <div>
                             <MuiThemeProvider><MainLayout data={this.state}></MainLayout></MuiThemeProvider>
                         </div>
                         </div>

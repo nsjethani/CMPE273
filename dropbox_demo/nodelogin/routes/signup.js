@@ -19,7 +19,7 @@ router.post('/doSignup', function (req, res, next) {
     req.checkBody('email', 'The email you entered is invalid, please try again.').isEmail();
     req.checkBody('email', 'Email address must be between 4-100 characters long, please try again.').len(4, 100);
     req.checkBody('pass', 'Password must be between 4-100 characters long.').len(4, 100);
-   // req.checkBody("pass", "Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
+    req.checkBody("pass", "Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
 
     const errors = req.validationErrors();
 
