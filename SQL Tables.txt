@@ -1,0 +1,12 @@
+SQL Tables :
+
+CREATE TABLE `users` (
+  `email` varchar(45) NOT NULL,
+  `firstname` varchar(35) DEFAULT NULL,
+  `lastname` varchar(45) DEFAULT NULL,
+  `password` varchar(200) NOT NULL,
+  `userid` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`userid`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+
