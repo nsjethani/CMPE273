@@ -4,9 +4,8 @@ var bCrypt = require('bcrypt');
 function handle_request(msg, callback){
     var res = {};
     console.log("In handle request:"+ JSON.stringify(msg));
-    mongo.connect(function(db) {
-        var coll = db.collection('user');
-        coll.findOne({'email':msg.username},function (err,user) {
+
+        mongo.findOneDocument('user',{'email':msg.username},function (err,user) {
                 console.log("User here is ",user)
                 if(err){
                     res.code = "401";
@@ -32,7 +31,6 @@ function handle_request(msg, callback){
             }
 
         )
-    })
 
 }
 

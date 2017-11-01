@@ -19,7 +19,6 @@ var storage = multer.diskStorage({
 var upload = multer({storage:storage});
 
 router.post('/upload', upload.any(), function (req, res, next) {
-    var flag = true;
     var now = new Date();
     console.log("In file upload ", req.files)
         var logdata={

@@ -3,8 +3,7 @@ var mongo = require('./mongo')
 function FileList(msg,callback) {
     var res = {};
     console.log("In get files at kafka back end:"+ JSON.stringify(msg));
-    mongo.connect(function (db) {
-        db.collection('filedata').find({'path': msg.pathdata.path}).toArray(function (err, user) {
+        mongo.findDocument('filedata',{'path': msg.pathdata.path},function (err, user) {
             if (err) {
                 throw err;
             }
@@ -19,7 +18,7 @@ function FileList(msg,callback) {
             }
             console.log(JSON.stringify("File List ",sendFiles));
 
-            db.collection('starfile').find({'userid': msg.userid.userid}).toArray(function (err, user) {
+            mongo.findDocument('starfile',{'userid': msg.userid.userid},function (err, user) {
                 if (err) {
                     throw err;
                 }
@@ -38,6 +37,5 @@ function FileList(msg,callback) {
                 callback(err,res)
             })
         })
-    })
 };
 exports.FileList = FileList;

@@ -2,11 +2,11 @@ var kafka = require('kafka-node');
 
 function ConnectionProvider() {
     this.getConsumer = function(topic_name) {
-        console.log("Topic name in getconsumer", topic_name)
+        //console.log("Topic name in getconsumer", topic_name)
        // console.log("Consumer connection ",this.kafkaConsumerConnection)
             this.client = new kafka.Client("localhost:2181");
-            console.log("Topic inside if ",topic_name)
-            this.kafkaConsumerConnection = new kafka.Consumer(this.client,[ { topic: topic_name, partition: 0 }]);
+            //console.log("Topic inside if ",topic_name)
+            this.kafkaConsumerConnection = new kafka.Consumer(this.client,[ { topic: topic_name, partition: 0 }],{fetchMaxBytes: 1024 * 1024 *1024});
             this.client.on('ready', function () { console.log('client ready on topic!', topic_name) })
         return this.kafkaConsumerConnection;
     };

@@ -1,15 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var fs = require('fs');
-var mongo = require('./mongodb/mongo');
-var url = 'mongodb://localhost:27017/dropbox';
-var ObjectId = require('mongodb').ObjectID;
-
+var kafka = require('./kafka/client');
 
 var saveUserProfile =  function (data,res) {
-    mongo.connect(function(db){
-        console.log("Connected to MongoDB at ",url)
-        profiledata =
+        var profiledata =
             {
                 _id : data.session.user._id,
                 overview: data.body.overview,
@@ -24,59 +16,43 @@ var saveUserProfile =  function (data,res) {
                 show: data.body.show,
                 sports: data.body.sports }
 
-        name =
+        var name =
         {
             id:data.session.user._id,
             fname : data.body.fname,
             lname : data.body.lname
         }
-         mongo.saveDocument(db,'userprofile',profiledata,function (err,results) {
-            console.log("Done : User Profile")
-        })
-        mongo.findAndModifyDocument(db,'user',name);
-        res.json({status:'201'})
+
+        var kafka_data = {profiledata:profiledata,name:name }
+
+    kafka.make_request('saveprofile_topic',kafka_data, function(err,results){
+        console.log("I got this result back after save profile",results);
+        if(err){
+            console.log("Error")
+            res.json(results)
+        }
+        else
+        {
+            console.log("user profile saved")
+            res.json(results)
+        }
     });
 };
 
 var fetchUserProfile=function (req,res){
-    var sendLogs=[];
-    var userdetail={};
-    mongo.connect(function(db) {
-        db.collection('user').find({"_id": new ObjectId(req.session.user._id)}).toArray(function (err,user) {
-                if(err){
-                    throw err;
-                }
-                for(var i=0;i<user.length;i++)
-                {
-                    console.log("1st fetch ", user[i]);
-                    userdetail.fname = user[i].fname;
-                    userdetail.lname = user[i].lname;
-                }
-        db.collection('userprofile').find({'_id':req.session.user._id}).toArray(function (err,user) {
-                if(err){
-                    throw err;
-                }
-                for(var i=0;i<user.length;i++)
-                {
-                    console.log("2nd fetch ",user[i]);
-                    userdetail.overview = user[i].overview;
-                    userdetail.work = user[i].work;
-                    userdetail.highschool = user[i].highschool;
-                    userdetail.bachelors = user[i].bachelors;
-                    userdetail.masters = user[i].masters;
-                    userdetail.otheredu = user[i].otheredu;
-                    userdetail.mobile = user[i].mobile;
-                    userdetail.lifeevent = user[i].lifeevent;
-                    userdetail.music = user[i].music;
-                    userdetail.show = user[i].show;
-                    userdetail.sports = user[i].sports
-                }
-                sendLogs.push(userdetail)
-                console.log("Profile here ",JSON.stringify(sendLogs));
-                res.json({status:'201',data:sendLogs});
-        })
-    })
-    })
+    var data = {id:req.session.user._id}
+    kafka.make_request('getprofile_topic',data, function(err,results){
+        console.log("I got this result back after fetching user profile",results);
+        if(err){
+            console.log("Error")
+            res.json(results)
+        }
+        else
+        {
+            console.log("git user profile")
+            res.json(results)
+        }
+    });
 };
 
 

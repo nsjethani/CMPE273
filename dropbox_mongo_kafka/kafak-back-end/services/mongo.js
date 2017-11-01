@@ -3,19 +3,24 @@ var db;
 var connected = false;
 var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://localhost:27017/dropbox';
-
+var conn = require('./conn_pool')
 /**
- * Connects to the MongoDB Database with the provided URL
+ * Connects to the MongoDB Database with the provided URL and reuse the same object everytime
  */
-exports.connect = function(callback){
-    console.log( typeof callback);
-    MongoClient.connect(url, function(err, _db){
+
+
+function connect(callback){
+
+conn.getConnection(callback)
+
+    /*console.log("Inside connect")
+    MongoClient.connect(url,{
+        poolSize: 500}, function(err, _db){
         if (err) { throw new Error('Could not connect: '+err); }
         db = _db;
         connected = true;
         console.log(connected +" is connected?");
-        callback(db);
-    });
+    });*/
 };
 
 /**
@@ -29,63 +34,112 @@ exports.collection = function(name){
 
 };
 
+exports.findDocument = function(collection,data,callback){
+    connect(function (db) {
+        console.log("type of callback in findDocument", typeof callback)
+        var coll = db.collection(collection);
+        var cursor = coll.find(data);
+        var return_data = [];
+        cursor.forEach(function(doc) {
+            //console.log(JSON.stringify(doc));
+            return_data.push(doc);
+        }, function(err) {
+            conn.closeConnection(db);
+            callback(false,return_data);
+        });
+    })
+
+};
+
+exports.findOneDocument = function(collection,data,callback){
+    connect(function (db) {
+        console.log("Input data is ",collection)
+        var coll = db.collection(collection);
+        coll.findOne(data).then(function(return_data) {
+            console.log("Return data ", return_data)
+            conn.closeConnection(db);
+            callback(false, return_data);
+        })
+    })
+
+
+};
+
 /**
  * inserts data in given collection
  */
-exports.insertDocument = function (db,collection, data,callback) {
-    var coll = db.collection(collection);
-    coll.insertOne(data,function(err, result) {
-        if(err){
-            console.log("Got error")
-        }
-        else
-        {
-            console.log("Inserted a document into the collection.",collection);
-            callback(err,result)
-        }
-    });
+exports.insertDocument = function (collection, data,callback) {
+    connect(function (db) {
+        var coll = db.collection(collection);
+        coll.insertOne(data,function(err, result) {
+            if(err){
+                console.log("Got error")
+            }
+            else
+            {
+                console.log("Inserted a document into the collection.",collection);
+                conn.closeConnection(db);
+                callback(err,result)
+            }
+        });
+    })
+   
 };
 
-exports.deleteDocument = function (db,collection, data,callback) {
-    var coll = db.collection(collection);
-    console.log(data)
-    coll.removeOne(data,function(err, result) {
-        if(err){
-            console.log("Got error while deletion of document")
-        }
-        else
-        {
-            console.log("deleted a document from collection ",collection);
-            callback(err,result)
-        }
-    });
-};
+exports.deleteDocument = function (collection, data,callback) {
+    connect(function (db) {
+        var coll = db.collection(collection);
+        console.log(data)
+        coll.removeOne(data,function(err, result) {
+            if(err){
+                console.log("Got error while deletion of document")
+            }
+            else
+            {
+                console.log("deleted a document from collection ",collection);
+                conn.closeConnection(db);
+                callback(err,result)
+            }
+        });
+    })
 
-/**
- * save document in given collection
- */
-exports.saveDocument = function (db,collection, data,callback) {
-    var coll = db.collection(collection);
-    coll.save(data,function(err, result) {
-        if(err){
-            console.log("Got error" , err)
-        }
-        else
-        {
-            console.log("Saved User Profile.");
-            callback(err,result)
-        }
-    });
 };
 
 /**
  * save document in given collection
  */
-exports.findAndModifyDocument = function (db,collection, data) {
-    var coll = db.collection(collection);
-    coll.findAndModify(
-        {_id:ObjectId(data.id)},
-        [],
-        {$set:{fname:data.fname,lname:data.lname}},
-        { new:true }
-    )};
+exports.saveDocument = function (collection, data,callback) {
+    connect(function (db) {
+        var coll = db.collection(collection);
+        coll.save(data,function(err, result) {
+            if(err){
+                console.log("Got error" , err)
+            }
+            else
+            {
+                console.log("Saved User Profile.");
+                conn.closeConnection(db);
+                callback(err,result)
+            }
+        });
+    })
+
+};
+
+/**
+ * save document in given collection
+ */
+exports.findAndModifyDocument = function (collection, data) {
+    connect(function (db) {
+        var coll = db.collection(collection);
+        coll.findAndModify(
+            {_id:ObjectId(data.id)},
+            [],
+            {$set:{fname:data.fname,lname:data.lname}},
+            { new:true }
+        );
+        conn.closeConnection(db)
+    })
+    };
+
+exports.connect = connect;

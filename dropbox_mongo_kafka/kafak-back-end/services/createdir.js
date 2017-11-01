@@ -18,8 +18,7 @@ function createdir(msg,callback) {
                     callback(err,res)
                 }
             })
-            mongo.connect(function(db){
-                mongo.insertDocument(db,'filedata',msg.filedata,function (err,results) {
+                mongo.insertDocument('filedata',msg.filedata,function (err,results) {
                     if(err){
                         res.status='401';
                         res.message = 'Error in create folder entry'
@@ -29,7 +28,7 @@ function createdir(msg,callback) {
                     res.message = 'Folder created'
                     callback(err,res)
                 })
-            });
+
         }
     });
 };

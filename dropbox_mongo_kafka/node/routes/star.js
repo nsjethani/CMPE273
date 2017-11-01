@@ -1,5 +1,4 @@
-var userlog = require('./userlogs');
-var mongo = require('./mongodb/mongo');
+var kafka = require('./kafka/client');
 
 var starFile = function (req, res) {
     var now = new Date();
@@ -7,52 +6,47 @@ var starFile = function (req, res) {
     var fname = req.body.file_name;
     var fpath = req.body.file_path;
     var flag = true;
-    var data = {
+    var filedata = {
         userid : req.session.user._id,
         fid : fid,
         fname : fname,
         fpath : fpath,
         isFile:req.body.isdir
     }
-            console.log('Data for star file ' , data);
-            var logdata={
+    console.log('Data for star file ' , filedata);
+    var logdata={
                 userid : req.session.user._id,
                 filename : fname,
                 operation : 'File Starred',
                 inserttime : (now.getMonth()+1) +'/' + now.getDate() + '/' +now.getFullYear() + ' ' +now.toLocaleTimeString(),
                 size: 0
             }
-            console.log("Data to be inserted in log", logdata)
+    console.log("Data to be inserted in log", logdata)
 
-            userlog.userlogs(logdata,function (err,results) {
-                if(err){
-                    flag=false;
-                }
-            })
-            mongo.connect(function(db){
-                mongo.insertDocument(db,'starfile',data,function (err,results) {
-                    if(err)
-                        flag=false
-                })
-            });
-            if(flag) {
-                console.log("Successfully Starred file")
-                res.status(201).json({
-                    message: 'Successfully Starred file',
-                    status: '201'
-                });
-            }
+    var data = {filedata:filedata,logdata:logdata}
+
+    kafka.make_request('star_topic',data, function(err,results){
+        console.log("I got this result back after star file",results);
+        if(err){
+            console.log("Error")
+            res.json(results)
+        }
+        else
+        {
+            console.log("starred")
+            res.json(results)
+        }
+    });
 };
 
 var unmarkStar = function (req, res) {
     var now = new Date();
     var fid = req.body.file_id;
     var fname = req.body.file_name;
-    var flag = true;
-    var data = {
+    var filedata = {
         fid : fid
     }
-    console.log('Data for deleting star file ' , data);
+    console.log('Data for deleting star file ' , filedata);
     var logdata={
         userid : req.session.user._id,
         filename : fname,
@@ -62,24 +56,22 @@ var unmarkStar = function (req, res) {
     }
     console.log("Data to be inserted in log", logdata)
 
-    userlog.userlogs(logdata,function (err,results) {
+    var data = {filedata:filedata,logdata:logdata}
+
+    kafka.make_request('unstar_topic',data, function(err,results){
+        console.log("I got this result back after star file",results);
         if(err){
-            flag=false;
+            console.log("Error")
+            res.json(results)
         }
-    })
-    mongo.connect(function(db){
-        mongo.deleteDocument(db,'starfile',data,function (err,results) {
-            if(err)
-                flag=false
-        })
+        else
+        {
+            console.log("starred")
+            res.json(results)
+        }
     });
-    if(flag) {
-        console.log("Successfully UnStarred file")
-        res.status(201).json({
-            message: 'Successfully UnStarred file',
-            status: '201'
-        });
-    }
+
+
 };
 exports.starFile= starFile;
 exports.unmarkStar= unmarkStar;

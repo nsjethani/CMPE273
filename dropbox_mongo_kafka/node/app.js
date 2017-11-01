@@ -9,7 +9,8 @@ var passport = require('passport');
 var mongoSessionURL = "mongodb://localhost:27017/sessions";
 var expressSessions = require("express-session");
 var mongoStore = require("connect-mongo/es5")(expressSessions);
-
+var fileUpload = require('express-fileupload')
+var kafka = require('./routes/kafka/client');
 require('./routes/mongodb/login')(passport);
 
 var index = require('./routes/index');
@@ -128,6 +129,61 @@ app.post('/login', function(req, res) {
         }
     })(req, res);
 });
+//send upload file data
+app.use(fileUpload());
+app.post('/upload',function (req,res) {
+        console.log('------------------------------------')
+            console.log(req.files.myfile.data)
+        console.log('------------------------------------')
+    console.log("req.files.myfile. ",req.files.myfile)
+    var now = new Date();
+    var logdata={
+        userid : req.session.user._id,
+        filename : req.files.myfile.name,
+        operation : 'Insert',
+        inserttime : (now.getMonth()+1) +'/' + now.getDate() + '/' +now.getFullYear() + ' ' +now.toLocaleTimeString()
+    }
+    //console.log("Data to be inserted in userlog", logdata)
+    var filedata={
+        userid : req.session.user._id,
+        filename : req.files.myfile.name,
+        path : req.headers.path,
+        isFile : true,
+        inserttime: (now.getMonth()+1) +'/' + now.getDate() + '/' +now.getFullYear() + ' ' +now.toLocaleTimeString()
+    }
+
+    //console.log("Data to be inserted in files collection while uploading file ",filedata)
+
+    var data = {logdata:logdata,filedata:filedata,buffer:req.files.myfile.data,encoding:req.files.myfile.encoding,mime:req.files.myfile.mimetype}
+
+   // var upload_path = filedata.path + '/' +filedata.filename
+    /*var upload_path = filedata.path
+
+    req.files.myfile.mv(upload_path, function (err) {
+        if(err)
+            console.log("Could not upload file coz of ",err)
+        else
+            console.log("File uploaded on ",upload_path)
+    })*/
+
+    //console.log('------------------------------------')
+    //console.log("Data to be uploaded is ", data)
+    //console.log('------------------------------------')
+
+    kafka.make_request('upload_topic',data, function(err,results){
+        console.log("I got this result back file upload",results);
+        if(err){
+            console.log("Error")
+            res.json(results)
+        }
+        else
+        {
+            console.log("uploaded file")
+            res.json(results)
+        }
+    });
+    }
+)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

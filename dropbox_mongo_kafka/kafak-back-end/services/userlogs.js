@@ -11,8 +11,7 @@ router.get('/', function (req, res, next) {
 function userlogs(msg, callback){
     var res = {};
     console.log("In handle userlogs:"+ JSON.stringify(msg));
-    mongo.connect(function(db) {
-        mongo.insertDocument(db,'userlogs',msg,function (err,results) {
+        mongo.insertDocument('userlogs',msg,function (err,results) {
             if(err){
                 console.log("sending status 401 coz of error")
                 res.code = "401";
@@ -26,7 +25,7 @@ function userlogs(msg, callback){
                 res.results = results
             }
             callback(err,res)
-        })}
+        }
         )
     }
 

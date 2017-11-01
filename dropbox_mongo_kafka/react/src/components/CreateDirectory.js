@@ -1,0 +1,681 @@
+import React,{Component} from 'react';
+import * as API from '../api/API';
+import MobileTearSheet from '../MobileTearSheet';
+import {List, ListItem} from 'material-ui/List';
+import TextField from 'material-ui/TextField';
+import Avatar from 'material-ui/Avatar';
+import FileFolder from 'material-ui/svg-icons/file/folder';
+import ActionAssignment from 'material-ui/svg-icons/action/assignment';
+import ContentSend from 'material-ui/svg-icons/content/send';
+import {blue500} from 'material-ui/styles/colors';
+import FileDownload from 'react-file-download';
+import UserProfile from './UserProfile';
+import {Checkbox} from 'react-bootstrap';
+
+var tablestyle={textAlign:'left'};
+
+
+/*
+class ModalExample extends React.Component {
+
+    state = {open:false
+    }
+
+    render(){
+        let closeModal = () => this.setState({ open: false })
+
+        let handleClick = () => this.setState({open:true});
+
+
+        return (
+            <div>
+                <button type='button' onClick={handleClick}>Launch modal</button>
+                <div  data-backdrop="false" >
+                <Modal
+
+                    show={this.state.open}
+                    onHide={closeModal}
+                    aria-labelledby="ModalHeader"
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title id='ModalHeader'>A Title Goes here</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p>Some Content here</p>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        // If you don't have anything fancy to do you can use
+                        // the convenient `Dismiss` component, it will
+                        // trigger `onHide` when clicked
+                        <Modal.Dismiss className='btn btn-default'>Cancel</Modal.Dismiss>
+
+                        // Or you can create your own dismiss buttons
+                    </Modal.Footer>
+                </Modal>
+</div>
+            </div>
+        )
+    }
+}
+*/
+
+/*
+export class createDir extends Component{
+
+    state = {
+        dirname: '',
+        ComponenetToBeRendered: '1',
+
+    };
+
+    componentWillMount(){
+        this.setState({
+            dirname: '',
+            isNotEmpty: true
+        });
+    }
+
+    render()
+    {
+        return(
+
+            <div>
+                <input className="form-control"
+                       type="text"
+                       label="Folder Name"
+                       placeholder="Folder"
+                       value={this.state.dirname}
+                       onChange={(event) => {
+                           this.setState({
+                               dirname: event.target.value,
+                               isNotEmpty : false
+                           });
+                       }}
+                />
+                <button disabled={this.state.isNotEmpty}>Create</button>
+            </div>
+        )
+    }
+}
+*/
+
+    export class MainLayout extends Component{
+
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                child1: UserProfile,
+                enableView: 1,
+                files: [],
+                staredList: [],
+                origStaerdList: [],
+                logs: [],
+                rootdir: '',
+                pathHistory: [],
+                starPathHistory: [],
+                userid: '',
+                newdirname: '',
+                newdirlen: 0,
+                open: false,
+                address: '',
+                share_enable: false,
+                file_to_share: {}
+            }
+        }
+        componentWillMount(){
+
+            var userid = localStorage.getItem("userid");
+            var rootdir = localStorage.getItem("rootdir");
+
+            this.setState({
+                child1: UserProfile,
+                enableView:1,
+                rootdir:rootdir,
+                userid:userid
+            });
+
+            this.getfile(rootdir);
+            this.getlogs();
+
+        }
+
+        getBack = () =>{
+            let len = this.state.pathHistory.length
+            if(len>1){
+                this.getfile(this.state.pathHistory[len-2]);
+                console.log("Filepath b4",this.state.pathHistory)
+                this.state.pathHistory.splice(len-2, 2);
+                console.log("Filepath after",this.state.pathHistory)
+            }else{
+                this.getfile(this.state.rootdir);
+                this.state.pathHistory.splice(len-1, 1);
+            }
+        };
+        getBackStar = () =>{
+            let len = this.state.starPathHistory.length;
+                if(len>1){
+                    this.getStarChild(this.state.starPathHistory[len-2]);
+                    this.state.starPathHistory.splice(len-2, 2);
+                 }else{
+                    this.setState({staredList:this.state.origStaerdList})
+                    this.state.starPathHistory.splice(len-1, 1);
+                }
+        };
+
+        getStarChild= (filepath) =>{
+            var data = {'dir':filepath};
+            API.getfiles(data)
+                .then((res) => {
+                    if (res.status === '201') {
+                        if(filepath!=this.state.starPathHistory[this.state.starPathHistory.length-1]){
+                            this.state.starPathHistory.push(filepath);
+                        }
+                        this.setState({
+                            staredList : res.filelist
+                        });
+                    }
+                })
+        };
+
+        getfile= (filepath) =>{
+            var data = {'dir':filepath};
+
+            API.getfiles(data)
+                .then((res) => {
+                    if (res.status === '201') {
+                        if(filepath!=this.state.pathHistory[this.state.pathHistory.length-1]){
+                            this.state.pathHistory.push(filepath);
+                        }
+                        this.setState({
+                            files: res.filelist,
+                            staredList : res.starlist,
+                            origStaerdList : res.starlist
+                        });
+                        this.getStars();
+                    }
+                })
+        };
+
+        getlogs = () =>
+            API.getlogs()
+                .then((res) => {
+                    if (res.status === '201') {
+                        console.log(res.LogList);
+                        this.setState({
+                            logs: res.LogList
+                        });
+                    }
+                })
+
+        getStars = () =>{
+            console.log("Comparing starred files")
+            this.state.files.map((file)=>{
+                    file.isStar = false;
+                }
+            )
+
+            console.log(this.state.files)
+            console.log(this.state.origStaerdList)
+            this.state.files.map((file1)=>{
+                this.state.origStaerdList.map((file2)=>{
+                    if(file2.id === file1.id){
+                        file1.isStar = true
+                        }
+                    }
+                )
+                }
+            )
+            console.log("Got starred ", this.state.files)
+            this.setState({files:this.state.files})
+        }
+
+
+        downloadfile= (filepath,filename) =>{
+
+            var data = {'path':filepath,'name':filename};
+            console.log("My data in download", data)
+            API.downloadfile(data)
+                .then((res) => {
+                    FileDownload(res.data, filename);
+
+                })
+        };
+
+        createFolder= (newdirname) =>{
+            var dirpath = "";
+            var index = this.state.pathHistory.length;
+            if(this.state.pathHistory.length>0){
+                dirpath = (this.state.pathHistory[index-1]);
+            }else{
+                dirpath = (this.state.rootdir);
+            }
+            console.log("I am in create folder with path ", dirpath);
+            var data = {'foldername':newdirname, 'dirpath': dirpath};
+            API.createdir(data)
+                .then((status) => {
+                    if (status.status === '201') {
+                        console.log("Folder created :)")
+                        this.getfile(dirpath);
+                    }
+                });
+        };
+
+        onFolderClick= (dirpath,dirname) =>{
+             var newpath = dirpath+'/'+dirname
+                console.log(newpath, "has been clicked");
+                this.setState({rootdir:newpath},this.getfile(newpath));
+        };
+
+        onStarFolderClick= (dirpath,dirname) =>{
+            var newpath = dirpath+'/'+dirname
+            console.log(newpath, "has been clicked in star");
+            this.getStarChild(newpath);
+        };
+
+        handleFileUpload = (event) => {
+            let u_path="";
+            if(this.state.pathHistory.length>0){
+                u_path = (this.state.pathHistory[this.state.pathHistory.length-1]);
+            }else{
+                u_path = (this.state.rootdir);
+            }
+            const payload = new FormData();
+            //var data ={'myfile':event.target.files[0], 'path':this.state.rootdir}
+            payload.append('myfile', event.target.files[0]);
+            console.log("root dir in this page ", this.state.rootdir)
+            payload.append('path',u_path);
+            console.log("payload path ",payload.get('path'))
+            API.uploadFile(payload)
+                .then((status) => {
+                    if (status.status === '201') {
+                        console.log("I am here ",status.status)
+                        this.getfile(this.state.rootdir)
+                    }
+                });
+
+        };
+
+        shareButton = (name,path,isdir) =>
+        {
+            var file_detail = {
+               name:name,
+               path:path,
+               isdir:isdir
+            }
+            this.setState({
+                share_enable:true,
+                file_to_share:file_detail
+                })
+        }
+
+        handleStar(event,fid,fname,fpath,isdir) {
+            let u_path="";
+            if(this.state.pathHistory.length>0){
+                u_path = (this.state.pathHistory[this.state.pathHistory.length-1]);
+            }else{
+                u_path = (this.state.rootdir);
+            }
+            var checked = event.target.checked;
+            var data = {'file_id':fid,
+                         'file_name':fname,
+                        'file_path':fpath,
+                        'isdir':isdir
+            };
+            if(checked){
+                API.markStar(data).then((res) => {
+                    this.getfile(u_path);
+                });
+            }
+            else{
+                API.unmarkStar(data).then((res) => {
+                    this.getfile(u_path);
+                });
+            }
+        };
+
+        /*deletefileconfirm=(fid)=>{
+            console.log("Confirm is ",typeof confirmable)
+            var r = confirmable("Are you sure you wanna delete this file ? Once deleted, cannot be recovered.");
+            console.log("r is ",r)
+            if (r == true) {
+                this.deletefile(fid)
+            } else {
+                alert("File/Folder not deleted")
+            }
+        }*/
+
+        deletefile= (fid,fname) =>{
+            let u_path="";
+            if(this.state.pathHistory.length>0){
+                u_path = (this.state.pathHistory[this.state.pathHistory.length-1]);
+            }else{
+                u_path = (this.state.rootdir);
+            }
+            var data = {'file_id':fid,fname:fname};
+            API.deletefile(data)
+                .then((status) => {
+                    console.log("delete file status ",status)
+                    if (status.status === '201') {
+                        this.getfile(u_path);
+                    }
+                });
+        };
+
+
+        renderPage()
+        {
+            var mr80={marginRight:150};
+            var bgcolor={backgroundColor:'white'};
+                return (
+                <div className="row">
+                    <div className="col-xs-3 col-md-3 col-sm-3">
+                        <MobileTearSheet>
+                            <List>
+                                <ListItem
+                                    leftAvatar={<Avatar icon={<ContentSend/>} backgroundColor={blue500}/>}
+                                    primaryText="Upload File"
+                                    onClick={(event) => {
+                                        this.setState({
+                                            enableView: 1
+                                        });
+                                    }}
+                                />
+                                <ListItem
+                                    leftAvatar={<Avatar icon={<ContentSend/>} backgroundColor={blue500}/>}
+                                    primaryText="My recent activity"
+                                    onClick={(event) => {
+                                        this.setState({
+                                            enableView: 2
+                                        });
+                                    }}
+                                />
+                                <ListItem
+                                    leftAvatar={<Avatar icon={<ContentSend/>} backgroundColor={blue500}/>}
+                                    primaryText="My Profile"
+                                    onClick={(event) => {
+                                        this.setState({
+                                            enableView: 3
+                                        });
+                                    }}
+                                />
+                            </List>
+                        </MobileTearSheet>
+                    </div>
+                    <div className="col-xs-6 col-md-6 col-sm-6">
+                        <div className="card col-sm-8"  >
+                            <div className="card-body">
+                                <h4>User Logs</h4>
+                                {
+                                    this.state.logs.map((log) => {
+                                        return (
+                                            <div style={tablestyle}>
+
+                                                    <div style={bgcolor} role="alert">
+                                                        <div style={mr80}>File Name : { log.filename } </div>
+                                                        <div>  <span>Operation : {log.operation}</span></div>
+                                                        <div>
+                                                            <span aria-hidden={true}>Date Time : {log.inserttime}</span>
+                                                        </div>
+                                                        <br/>
+                                                    </div>
+
+                                            </div>
+                                        );
+                                    })
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                    <div className="col-xs-3 col-md-3 col-sm-3">
+                    </div>
+
+                </div>)}
+
+
+            renderPage2()
+            {
+
+                return (
+                    <div className="row">
+                        <div className="col-xs-3 col-md-3 col-sm-3">
+                            <MobileTearSheet>
+                                <List>
+                                    <ListItem
+                                        leftAvatar={<Avatar icon={<ContentSend/>} backgroundColor={blue500}/>}
+                                        primaryText="Upload File"
+                                        onClick={(event) => {
+                                            this.setState({
+                                                enableView: 1
+                                            });
+                                        }}
+                                    />
+                                    <ListItem
+                                        leftAvatar={<Avatar icon={<ContentSend/>} backgroundColor={blue500}/>}
+                                        primaryText="My recent activity"
+                                        onClick={(event) => {
+                                            this.getlogs()
+                                            this.setState({
+                                                enableView: 2
+                                            });
+
+                                        }}
+                                    />
+                                    <ListItem
+                                        leftAvatar={<Avatar icon={<ContentSend/>} backgroundColor={blue500}/>}
+                                        primaryText="My Profile"
+                                        onClick={(event) => {
+                                            this.setState({
+                                                enableView: 3
+                                            });
+                                        }}
+                                    />
+                                </List>
+                            </MobileTearSheet>
+                        </div>
+                        <div className="col-xs-6 col-md-6 col-sm-6">
+                            <div>
+                                <br/>
+                            <input type='email' onChange={(event) => {
+                                const address=event.target.value
+                                this.setState({
+                                    address: event.target.value
+                                });
+
+                            }}
+                                   style={{display: this.state.share_enable ? 'none' : 'inline-block' }}
+
+                            />
+                            &nbsp; &nbsp;
+                            <button>Share</button>
+                            </div>
+                            <h3  style={tablestyle}>
+                                Starred Files
+                            </h3>
+                            <div style={tablestyle}> <button onClick={() => this.getBackStar()}>
+                                Back
+                            </button></div>
+                            <hr/>
+                            <table className="table" style={tablestyle}>
+                                {this.state.staredList.map(file=>
+                                    (file.isdir) ?
+                                        (
+                                            <tr>
+                                                <td>
+                                                    <button onClick={()=>this.onStarFolderClick(file.path, file.name)}>{file.name}</button>
+                                                </td>
+                                                <td>
+                                                    {(this.state.staredList === this.state.origStaerdList) ?
+                                                        (<Checkbox checked={true} value={file.path}
+                                                                   onChange={(e) => this.handleStar(e, file.id, file.name, file.path, false)}>Star</Checkbox>)
+                                                        :
+                                                        (<p></p>)
+                                                    }
+                                                    </td>
+                                            </tr>
+                                        )
+                                        :(
+                                            <tr>
+                                                <td>
+                                                    <a onClick={() => this.downloadfile(file.path, file.name)}>{file.name}</a>
+                                                </td>
+                                                <td>
+                                                    {(this.state.staredList === this.state.origStaerdList) ?
+                                                        (<Checkbox checked={true} value={file.path}
+                                                                   onChange={(e) => this.handleStar(e, file.id, file.name, file.path, false)}>Star</Checkbox>)
+                                                        :
+                                                        (<p></p>)
+                                                    }
+                                                </td>
+                                            </tr>
+                                        )
+                                )}
+
+                            </table>
+                            <h3 style={tablestyle}>
+                               Files
+                            </h3>
+                            <div  style={tablestyle}> <button  onClick={() => this.getBack()}>
+                                Back
+                            </button></div>
+                            <hr/>
+                            <table className="table" style={tablestyle}>
+                                    {this.state.files.map(file=>
+                                        (file.isdir) ?
+                                        (
+                                        <tr>
+                                            <td>
+                                            <button onClick={()=>this.onFolderClick(file.path, file.name)}>{file.name}</button>
+                                            </td>
+                                            <td>
+                                                <Checkbox checked={file.isStar} value={file.path} onChange={(e) => this.handleStar(e,file.id,file.name,file.path,false)} >Star</Checkbox>      </td>
+                                            <td>
+                                                <button onClick={() => {if(window.confirm('Delete the file/folder?')) {this.deletefile(file.id,file.name)};}}>Delete</button>
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                        )
+                                    :(
+                                        <tr>
+                                            <td>
+                                                <a onClick={() => this.downloadfile(file.path, file.name)}>{file.name}</a>
+                                            </td>
+
+                                            <td>
+                                                <Checkbox checked={file.isStar} value={file.path} onChange={(e) => this.handleStar(e,file.id,file.name,file.path,true)} >Star</Checkbox>
+                                            </td>
+                                            <td>
+                                                <button onClick={() => {if(window.confirm('Delete the file/folder?')) {this.deletefile(file.id,file.name)};}}>Delete</button>
+                                            </td>
+                                            <td>
+                                                <button onClick={() => this.shareButton(file.name,file.path,file.isdir) }>Share</button>
+                                            </td>
+                                        </tr>
+                                        )
+                                    )}
+
+                            </table>
+                        </div>
+                        <div className="col-xs-3 col-md-3 col-sm-3">
+                            <div>
+
+                            <input
+                                className={'fileupload'}
+                                type="file"
+                                name="mypic"
+                                onChange={this.handleFileUpload}
+                            />
+                            </div>
+                            <div>
+                                <input className="form-control"
+                                       type="text"
+                                       label="Folder Name"
+                                       placeholder="Folder"
+                                       value={this.state.dirname}
+                                       onChange={(event) => {
+                                           this.setState({
+                                               newdirname: event.target.value,
+                                               newdirlen: event.target.length
+                                           });
+                                       }}
+
+                                />
+                                <button disabled={this.state.newdirlen<=0} onClick={()=>this.createFolder(this.state.newdirname)}>Create</button>
+                            </div>
+                        </div>
+                    </div>
+                        )}
+
+        renderPage3()
+        {
+            return (
+                <div className="row">
+                    <div className="col-xs-3 col-md-3 col-sm-3">
+                        <MobileTearSheet>
+                            <List>
+                                <ListItem
+                                    leftAvatar={<Avatar icon={<ContentSend/>} backgroundColor={blue500}/>}
+                                    primaryText="Upload File"
+                                    onClick={(event) => {
+                                        this.setState({
+                                            enableView: 1
+                                        });
+                                    }}
+                                />
+                                <ListItem
+                                    leftAvatar={<Avatar icon={<ContentSend/>} backgroundColor={blue500}/>}
+                                    primaryText="My recent activity"
+                                    onClick={(event) => {
+                                        this.setState({
+                                            enableView: 2
+                                        });
+                                    }}
+                                />
+                                <ListItem
+                                    leftAvatar={<Avatar icon={<ContentSend/>} backgroundColor={blue500}/>}
+                                    primaryText="My Profile"
+                                    onClick={(event) => {
+                                        this.setState({
+                                            enableView: 3
+                                        });
+                                    }}
+                                />
+                            </List>
+                        </MobileTearSheet>
+                    </div>
+                    <div className="col-xs-6 col-md-6 col-sm-6">
+                        <div className="card col-sm-8"  >
+                            <div className="card-body">
+                                <h4>My Profile</h4>
+                                {React.createElement(this.state.child1)}
+                            </div>
+
+                        </div>
+                    </div>
+                    <div className="col-xs-3 col-md-3 col-sm-3">
+                    </div>
+
+                </div>)}
+
+
+
+
+        render()
+        {
+            console.log(this.state.files)
+           if(this.state.enableView === 2)
+           { return this.renderPage();}
+           else if(this.state.enableView === 1)
+           { return this.renderPage2();}
+           else if(this.state.enableView === 3)
+           { return this.renderPage3();}
+        }
+}
+
+
+
+
+
