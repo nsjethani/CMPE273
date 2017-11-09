@@ -11,6 +11,8 @@ import {blue500} from 'material-ui/styles/colors';
 import FileDownload from 'react-file-download';
 import UserProfile from './UserProfile';
 import {Checkbox} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
+
 
 var tablestyle={textAlign:'left'};
 
@@ -120,7 +122,8 @@ export class createDir extends Component{
                 open: false,
                 address: '',
                 share_enable: false,
-                file_to_share: {}
+                file_to_share: {},
+                show_modal:false
             }
         }
         componentWillMount(){
@@ -139,6 +142,13 @@ export class createDir extends Component{
             this.getlogs();
 
         }
+
+        close = () => {
+                this.setState({show_modal: false});
+        };
+        open = () => {
+            this.setState({show_modal: true})
+        };
 
         getBack = () =>{
             let len = this.state.pathHistory.length
@@ -304,9 +314,28 @@ export class createDir extends Component{
                isdir:isdir
             }
             this.setState({
-                share_enable:true,
+                show_modal:true,
+                share_enable:false,
                 file_to_share:file_detail
                 })
+        }
+
+
+        shareFile = (address) =>{
+            console.log("In share file at react side")
+            API.check_emails({'emails':address,'file':this.state.file_to_share})
+                .then((res) =>{
+                    if(res.status=='201'){
+                            var data  = {'file_to_share':this.state.file_to_share,'emails':address};
+                            /*API.share(data).then((res)=>{
+
+                            });
+                        }*/
+                        this.setState({
+                            file_to_share:{}
+                        });
+                    }
+                });
         }
 
         handleStar(event,fid,fname,fpath,isdir) {
@@ -475,7 +504,7 @@ export class createDir extends Component{
                             </MobileTearSheet>
                         </div>
                         <div className="col-xs-6 col-md-6 col-sm-6">
-                            <div>
+                            <div style={{display: this.state.share_enable ? 'inline-block' : 'none' }}>
                                 <br/>
                             <input type='email' onChange={(event) => {
                                 const address=event.target.value
@@ -484,11 +513,9 @@ export class createDir extends Component{
                                 });
 
                             }}
-                                   style={{display: this.state.share_enable ? 'none' : 'inline-block' }}
-
                             />
                             &nbsp; &nbsp;
-                            <button>Share</button>
+                            <button onClick={() =>this.shareFile(this.state.address)}>Share</button>
                             </div>
                             <h3  style={tablestyle}>
                                 Starred Files
@@ -554,7 +581,7 @@ export class createDir extends Component{
                                                 <button onClick={() => {if(window.confirm('Delete the file/folder?')) {this.deletefile(file.id,file.name)};}}>Delete</button>
                                             </td>
                                             <td>
-
+                                                <button onClick={() => this.shareButton(file.name,file.path,file.isdir) }>Share</button>
                                             </td>
                                         </tr>
                                         )
@@ -579,6 +606,37 @@ export class createDir extends Component{
 
                             </table>
                         </div>
+
+                        <div>
+                            <Modal show={this.state.show_modal} onHide={() => {
+                                this.close()
+                            }}>
+
+                                <Modal.Body>
+                                    <p>Enter comma seperated emails to share file</p>
+                                    <input type='email' onChange={(event) => {
+                                        const address=event.target.value
+                                        this.setState({
+                                            address: event.target.value
+                                        });
+
+                                    }}
+                                    />
+                                    &nbsp; &nbsp;
+                                    <button onClick={() =>this.shareFile(this.state.address)}>Share</button>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <div className="col-sm-5 col-md-5">
+                                        <button onClick={() => {
+                                            this.close('login')
+                                        }}>Close
+                                        </button>
+                                    </div>
+                                </Modal.Footer>
+                            </Modal>
+
+                        </div>
+
                         <div className="col-xs-3 col-md-3 col-sm-3">
                             <div>
 

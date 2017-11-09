@@ -259,6 +259,24 @@ export const deletefile = (payload) =>
             return error;
         });
 
+export const check_emails = (payload) =>
+    fetch(`${api}/check_emails`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload),
+        credentials:'include'
+    }).then(res => res.json())
+        .then(res =>{
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error in API in checking emails");
+            return error;
+        });
+
 
 
 

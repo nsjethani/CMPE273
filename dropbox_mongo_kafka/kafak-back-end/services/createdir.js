@@ -5,7 +5,8 @@ var userlog = require('./userlogs')
 function createdir(msg,callback) {
     var res = {};
     //console.log("In create directory:" + JSON.stringify(msg));
-    var createpath = './../node/'+msg.createpath;
+    //var createpath = './../node/'+msg.createpath;
+    var createpath = msg.createpath;
     fs.mkdir(createpath, function(err,folder) {
         if (err) {
             console.log('Unable to create folder ', err);

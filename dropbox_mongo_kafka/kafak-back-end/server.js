@@ -10,6 +10,7 @@ var createdir = require('./services/createdir')
 var deletefile = require('./services/deletefile')
 var starfile  = require('./services/star')
 var profile = require('./services/userprofile')
+var sharefile = require('./services/share')
 
 var topic_name = 'login_topic';
 var topic_signup = 'signup_topic';
@@ -22,6 +23,7 @@ var topic_starfile = 'star_topic'
 var topic_unstarfile = 'unstar_topic'
 var topic_saveprofile = 'saveprofile_topic'
 var topic_getprofile = 'getprofile_topic'
+var topic_check_email = 'check_mail_topic'
 
 var consumer = connection.getConsumer(topic_name);
 var consumer_signup = connection.getConsumer(topic_signup);
@@ -34,6 +36,7 @@ var consumer_starfile = connection.getConsumer(topic_starfile)
 var consumer_unstarfile = connection.getConsumer(topic_unstarfile)
 var consumer_saveprofile = connection.getConsumer(topic_saveprofile)
 var consumer_getprofile = connection.getConsumer(topic_getprofile)
+var consumer_check_email = connection.getConsumer(topic_check_email)
 var producer = connection.getProducer();
 
 //mongodb.connect();
@@ -265,6 +268,27 @@ consumer_getprofile.on('message', function (message) {
     console.log('received message in get user profile',JSON.stringify(message.value));
     var data = JSON.parse(message.value);
     profile.fetchUserProfile(data.data, function(err,res){
+        console.log('after getting user profile',res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+
+consumer_check_email.on('message', function (message) {
+    console.log('received message check email',JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    sharefile.shareFile(data.data, function(err,res){
         console.log('after getting user profile',res);
         var payloads = [
             { topic: data.replyTo,

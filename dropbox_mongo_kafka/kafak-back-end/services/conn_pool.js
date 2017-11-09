@@ -42,7 +42,7 @@ var connectPool=function(count,callback){
                 callback(err,null);
             }else{
                 conn_pool.push(_db);
-                console.log("",conn_pool.length);
+              //  console.log("",conn_pool.length);
             }
         });
     }

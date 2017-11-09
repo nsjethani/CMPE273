@@ -22,9 +22,13 @@ var delfile = require('./routes/file_options/deletefile');
 var listfiles = require('./routes/file_options/getfiles');
 var listlogs = require('./routes/mongodb/getlogs');
 var file = require('./routes/file_options/createdir')
-var logout = require('./routes/logout');
+var logout = require('./r' +
+    '' +
+    'outes/logout');
 var userprofile = require('./routes/userprofile')
 var star =  require('./routes/star')
+var share = require('./routes/share')
+
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -86,6 +90,7 @@ app.post('/fetchUserProfile',userprofile.fetchUserProfile);
 app.post('/unstar',star.unmarkStar);
 app.post('/star',star.starFile);
 app.post('/deletefile',delfile.deleteFile);
+app.post('/check_emails',share.check_emails);
 
 
 
