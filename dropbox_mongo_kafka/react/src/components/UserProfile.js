@@ -3,6 +3,8 @@ import Panel from 'react-bootstrap/lib/Panel';
 import Button from 'react-bootstrap/lib/Button';
 import * as API from '../api/API';
 
+var fl_right={color:"blue",float:"left"}
+
 
 class UserProfile extends  Component{
 
@@ -73,6 +75,7 @@ class UserProfile extends  Component{
                             <fieldset>
                                 <table>
 
+                                    <tr><td colSpan={2}><h4 style={fl_right}>Personal Information :</h4></td></tr>
                                     <tr>
 
                                         <td>
@@ -107,7 +110,20 @@ class UserProfile extends  Component{
                                 </td>
                                 </tr>
 
-
+                                    <tr><td>
+                                        Mobile </td><td>   <input className={`form-group `}
+                                                                  placeholder="Mobile"
+                                                                  type="text"
+                                                                  value={this.state.mobile}
+                                                                  onChange={(event)=>{
+                                                                      this.setState({
+                                                                          mobile:event.target.value
+                                                                      });
+                                                                  }}
+                                                                  required
+                                                                  autoFocus
+                                    />
+                                    </td></tr>
 
                                     <tr>
 
@@ -126,6 +142,7 @@ class UserProfile extends  Component{
                                 />
                                     </td>
                                 </tr>
+                                    <tr><td colSpan={2}><h4 style={fl_right}>Work and Education :</h4></td></tr>
                                 <tr><td>
                                     Work </td><td> <input className={`form-group `}
                                                        placeholder="Work"
@@ -197,20 +214,7 @@ class UserProfile extends  Component{
                                                            autoFocus
                                 />
                                     </td></tr>
-                                    <tr><td>
-                                    Mobile </td><td>   <input className={`form-group `}
-                                                         placeholder="Mobile"
-                                                         type="text"
-                                                         value={this.state.mobile}
-                                                         onChange={(event)=>{
-                                                             this.setState({
-                                                                 mobile:event.target.value
-                                                             });
-                                                         }}
-                                                         required
-                                                         autoFocus
-                                />
-                                    </td></tr>
+
                                     <tr><td>
                                     Life Events </td><td>  <input className={`form-group `}
                                                          placeholder="Impotant life events"
@@ -225,6 +229,9 @@ class UserProfile extends  Component{
                                                          autoFocus
                                 />
                                     </td></tr>
+
+                                    <tr><td colSpan={2}><h4 style={fl_right}>Interests :</h4></td></tr>
+
                                     <tr><td>
                                     Music </td><td>  <input className={`form-group `}
                                                         placeholder="Music"

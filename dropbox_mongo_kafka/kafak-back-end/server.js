@@ -40,7 +40,7 @@ var consumer_check_email = connection.getConsumer(topic_check_email)
 var producer = connection.getProducer();
 
 //mongodb.connect();
-mongo_pool.create_conn_pool(100,function () {
+mongo_pool.create_conn_pool(1000,function () {
     }
 )
 console.log("Mongo Connections created")

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link,withRouter} from 'react-router-dom';
 import * as API from '../api/API';
 import PropTypes from 'prop-types';
-
+var fl ={float:"right"}
 class Welcome extends Component {
 
     state = {
@@ -37,11 +37,13 @@ class Welcome extends Component {
     render(){
         return(
             <div className="row justify-content-md-center">
-                <div className="col-md-3">
-                    <div className="alert alert-warning" role="alert">
-                        {localStorage.getItem("fname")}, welcome to Dropbox
-                    </div>
-                    <button onClick={() =>  this.logout()}>Logout</button>
+                <div className="col-md-12">
+                    <div  role="alert">
+                        &nbsp; &nbsp;
+
+                    {/*    {localStorage.getItem("fname")}, welcome to Dropbox
+                    */}</div>
+                    <button style={fl} className="btn btn-info" onClick={() =>  this.logout()}>Logout</button>
                 </div>
             </div>
         )

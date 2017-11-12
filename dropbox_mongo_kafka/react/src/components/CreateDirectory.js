@@ -16,6 +16,11 @@ import {Modal} from 'react-bootstrap';
 
 var tablestyle={textAlign:'left'};
 
+var fl_right={color:"blue",float:"left"}
+
+var f1={float:"left"}
+
+var bcolor={backgroundColor:"#f7f7f9",textAlign:"left"}
 
 /*
 class ModalExample extends React.Component {
@@ -123,7 +128,9 @@ export class createDir extends Component{
                 address: '',
                 share_enable: false,
                 file_to_share: {},
-                show_modal:false
+                show_modal:false,
+                show_modal_group:false,
+                group_address:''
             }
         }
         componentWillMount(){
@@ -143,11 +150,21 @@ export class createDir extends Component{
 
         }
 
-        close = () => {
-                this.setState({show_modal: false});
+        create = (data) => {
+            if(data=='group')
+                this.setState({show_modal_group: true})
+
+
+        }
+        close = (text) => {
+                if(text=='share')
+                    this.setState({show_modal: false});
+                else if(text=='group')
+                    this.setState({show_modal_group:false});
         };
         open = () => {
-            this.setState({show_modal: true})
+            this.setState({show_modal_group:true})
+
         };
 
         getBack = () =>{
@@ -338,6 +355,11 @@ export class createDir extends Component{
                 });
         }
 
+        createGroup = (address) =>{
+            alert("In create group at react side ",address)
+
+        }
+
         handleStar(event,fid,fname,fpath,isdir) {
             let u_path="";
             if(this.state.pathHistory.length>0){
@@ -428,19 +450,29 @@ export class createDir extends Component{
                                         });
                                     }}
                                 />
+                                <ListItem
+                                    leftAvatar={<Avatar icon={<ContentSend/>} backgroundColor={blue500}/>}
+                                    primaryText="My groups"
+                                    onClick={(event) => {
+                                        this.setState({
+                                            enableView: 4
+                                        });
+                                    }}
+                                />
+
                             </List>
                         </MobileTearSheet>
                     </div>
                     <div className="col-xs-6 col-md-6 col-sm-6">
-                        <div className="card col-sm-8"  >
+                        <div className="card col-sm-12"  >
                             <div className="card-body">
-                                <h4>User Logs</h4>
+                                <h4 style={tablestyle}>Your Recent Activity</h4>
                                 {
                                     this.state.logs.map((log) => {
                                         return (
-                                            <div style={tablestyle}>
+                                            <div style={bcolor}>
 
-                                                    <div style={bgcolor} role="alert">
+                                                    <div style={bcolor} role="alert">
                                                         <div style={mr80}>File Name : { log.filename } </div>
                                                         <div>  <span>Operation : {log.operation}</span></div>
                                                         <div>
@@ -500,6 +532,16 @@ export class createDir extends Component{
                                             });
                                         }}
                                     />
+                                    <ListItem
+                                        leftAvatar={<Avatar icon={<ContentSend/>} backgroundColor={blue500}/>}
+                                        primaryText="My groups"
+                                        onClick={(event) => {
+                                            this.setState({
+                                                enableView: 4
+                                            });
+                                        }}
+                                    />
+
                                 </List>
                             </MobileTearSheet>
                         </div>
@@ -520,7 +562,7 @@ export class createDir extends Component{
                             <h3  style={tablestyle}>
                                 Starred Files
                             </h3>
-                            <div style={tablestyle}> <button onClick={() => this.getBackStar()}>
+                            <div style={tablestyle}> <button className="btn btn-primary" onClick={() => this.getBackStar()}>
                                 Back
                             </button></div>
                             <hr/>
@@ -530,7 +572,7 @@ export class createDir extends Component{
                                         (
                                             <tr>
                                                 <td>
-                                                    <button onClick={()=>this.onStarFolderClick(file.path, file.name)}>{file.name}</button>
+                                                    <button className="btn btn-outline-primary" onClick={()=>this.onStarFolderClick(file.path, file.name)}>{file.name}</button>
                                                 </td>
                                                 <td>
                                                     {(this.state.staredList === this.state.origStaerdList) ?
@@ -540,6 +582,8 @@ export class createDir extends Component{
                                                         (<p></p>)
                                                     }
                                                     </td>
+                                                <td>   </td>
+                                                <td></td>
                                             </tr>
                                         )
                                         :(
@@ -555,6 +599,8 @@ export class createDir extends Component{
                                                         (<p></p>)
                                                     }
                                                 </td>
+                                                <td></td>
+                                                <td></td>
                                             </tr>
                                         )
                                 )}
@@ -563,7 +609,7 @@ export class createDir extends Component{
                             <h3 style={tablestyle}>
                                Files
                             </h3>
-                            <div  style={tablestyle}> <button  onClick={() => this.getBack()}>
+                            <div  style={tablestyle}> <button className="btn btn-primary"   onClick={() => this.getBack()}>
                                 Back
                             </button></div>
                             <hr/>
@@ -573,15 +619,15 @@ export class createDir extends Component{
                                         (
                                         <tr>
                                             <td>
-                                            <button onClick={()=>this.onFolderClick(file.path, file.name)}>{file.name}</button>
+                                            <button className="btn btn-outline-primary" onClick={()=>this.onFolderClick(file.path, file.name)}>{file.name}</button>
                                             </td>
                                             <td>
                                                 <Checkbox checked={file.isStar} value={file.path} onChange={(e) => this.handleStar(e,file.id,file.name,file.path,false)} >Star</Checkbox>      </td>
                                             <td>
-                                                <button onClick={() => {if(window.confirm('Delete the file/folder?')) {this.deletefile(file.id,file.name)};}}>Delete</button>
+                                                <button className="btn btn-outline-danger" onClick={() => {if(window.confirm('Delete the file/folder?')) {this.deletefile(file.id,file.name)};}}>Delete</button>
                                             </td>
                                             <td>
-                                                <button onClick={() => this.shareButton(file.name,file.path,file.isdir) }>Share</button>
+                                                <button className="btn btn-success" onClick={() => this.shareButton(file.name,file.path,file.isdir) }>Share</button>
                                             </td>
                                         </tr>
                                         )
@@ -595,10 +641,10 @@ export class createDir extends Component{
                                                 <Checkbox checked={file.isStar} value={file.path} onChange={(e) => this.handleStar(e,file.id,file.name,file.path,true)} >Star</Checkbox>
                                             </td>
                                             <td>
-                                                <button onClick={() => {if(window.confirm('Delete the file/folder?')) {this.deletefile(file.id,file.name)};}}>Delete</button>
+                                                <button className="btn btn-outline-danger" onClick={() => {if(window.confirm('Delete the file/folder?')) {this.deletefile(file.id,file.name)};}}>Delete</button>
                                             </td>
                                             <td>
-                                                <button onClick={() => this.shareButton(file.name,file.path,file.isdir) }>Share</button>
+                                                <button className="btn btn-success" onClick={() => this.shareButton(file.name,file.path,file.isdir) }>Share</button>
                                             </td>
                                         </tr>
                                         )
@@ -609,7 +655,7 @@ export class createDir extends Component{
 
                         <div>
                             <Modal show={this.state.show_modal} onHide={() => {
-                                this.close()
+                                this.close('share')
                             }}>
 
                                 <Modal.Body>
@@ -628,7 +674,7 @@ export class createDir extends Component{
                                 <Modal.Footer>
                                     <div className="col-sm-5 col-md-5">
                                         <button onClick={() => {
-                                            this.close('login')
+                                            this.close('share')
                                         }}>Close
                                         </button>
                                     </div>
@@ -638,6 +684,7 @@ export class createDir extends Component{
                         </div>
 
                         <div className="col-xs-3 col-md-3 col-sm-3">
+                             <h4 style={fl_right}>Upload File</h4>
                             <div>
 
                             <input
@@ -647,7 +694,15 @@ export class createDir extends Component{
                                 onChange={this.handleFileUpload}
                             />
                             </div>
+                            &nbsp; &nbsp;
+
+                            <h4 style={fl_right}>Create Folder</h4>
+
+
+
                             <div>
+
+                                &nbsp; &nbsp;
                                 <input className="form-control"
                                        type="text"
                                        label="Folder Name"
@@ -661,8 +716,12 @@ export class createDir extends Component{
                                        }}
 
                                 />
-                                <button disabled={this.state.newdirlen<=0} onClick={()=>this.createFolder(this.state.newdirname)}>Create</button>
-                            </div>
+
+                                &nbsp; &nbsp;
+                                    <div>
+                                <button style={f1} className="btn btn-primary" disabled={this.state.newdirlen<=0} onClick={()=>this.createFolder(this.state.newdirname)}>Create</button>
+                                    </div>
+                                    </div>
                         </div>
                     </div>
                         )}
@@ -701,6 +760,16 @@ export class createDir extends Component{
                                         });
                                     }}
                                 />
+                                <ListItem
+                                    leftAvatar={<Avatar icon={<ContentSend/>} backgroundColor={blue500}/>}
+                                    primaryText="My groups"
+                                    onClick={(event) => {
+                                        this.setState({
+                                            enableView: 4
+                                        });
+                                    }}
+                                />
+
                             </List>
                         </MobileTearSheet>
                     </div>
@@ -718,6 +787,91 @@ export class createDir extends Component{
 
                 </div>)}
 
+        renderPage4()
+        {
+            return (
+                <div className="row">
+                    <div className="col-xs-3 col-md-3 col-sm-3">
+                        <MobileTearSheet>
+                            <List>
+                                <ListItem
+                                    leftAvatar={<Avatar icon={<ContentSend/>} backgroundColor={blue500}/>}
+                                    primaryText="Upload File"
+                                    onClick={(event) => {
+                                        this.setState({
+                                            enableView: 1
+                                        });
+                                    }}
+                                />
+                                <ListItem
+                                    leftAvatar={<Avatar icon={<ContentSend/>} backgroundColor={blue500}/>}
+                                    primaryText="My recent activity"
+                                    onClick={(event) => {
+                                        this.setState({
+                                            enableView: 2
+                                        });
+                                    }}
+                                />
+                                <ListItem
+                                    leftAvatar={<Avatar icon={<ContentSend/>} backgroundColor={blue500}/>}
+                                    primaryText="My Profile"
+                                    onClick={(event) => {
+                                        this.setState({
+                                            enableView: 3
+                                        });
+                                    }}
+                                />
+                                <ListItem
+                                    leftAvatar={<Avatar icon={<ContentSend/>} backgroundColor={blue500}/>}
+                                    primaryText="My groups"
+                                    onClick={(event) => {
+                                        this.setState({
+                                            enableView: 4
+                                        });
+                                    }}
+                                />
+
+                            </List>
+                        </MobileTearSheet>
+                    </div>
+                    <div className="col-xs-6 col-md-6 col-sm-6">
+                        <div>
+                        <button onClick={()=> {this.create('group')}}>create group</button>
+                        </div>
+                            <div>
+                            <Modal show={this.state.show_modal_group} onHide={() => {
+                                this.close('group')
+                            }}>
+
+                                <Modal.Body>
+                                    <p>Enter comma seperated emails to create a group</p>
+                                    <input type='email' onChange={(event) => {
+                                        const address=event.target.value
+                                        this.setState({
+                                            group_address: event.target.value
+                                        });
+
+                                    }}
+                                    />
+                                    &nbsp; &nbsp;
+                                    <button onClick={() =>this.createGroup(this.state.group_address)}>Create</button>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <div className="col-sm-5 col-md-5">
+                                        <button onClick={() => {
+                                            this.close('group')
+                                        }}>Close
+                                        </button>
+                                    </div>
+                                </Modal.Footer>
+                            </Modal>
+
+                        </div>
+                    </div>
+                    <div className="col-xs-3 col-md-3 col-sm-3">
+                    </div>
+
+                </div>)}
 
 
 
@@ -730,6 +884,8 @@ export class createDir extends Component{
            { return this.renderPage2();}
            else if(this.state.enableView === 3)
            { return this.renderPage3();}
+           else if(this.state.enableView === 4)
+           { return this.renderPage4();}
         }
 }
 

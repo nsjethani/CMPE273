@@ -63,7 +63,7 @@ var getConnection = function(callback){
         }
 
     }else{
-        create_conn_pool(100,function(){
+        create_conn_pool(600,function(){
             getConnection(callback);
         });
 
