@@ -61,8 +61,8 @@ function shareFile(msg,callback)
         });
     }
 
-    var user = 'neha.jethani6627@gmail.com'
-    var pass = 'nainajasuja'
+    var user = 'email_id used for mail sending'
+    var pass = 'corresponding password'
 
     nodemailer.createTestAccount((err, account) => {
 
