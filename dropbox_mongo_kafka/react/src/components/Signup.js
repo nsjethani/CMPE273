@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import FormErrors from "./FormErrors";
+import { Route, withRouter } from 'react-router-dom';
 
 class Signup extends Component {
 
@@ -170,6 +171,16 @@ class Signup extends Component {
                                 onClick={() => this.props.handleSignUp(this.state)}>
                                 Sign Up
                             </button>
+
+                            <br/>
+                            <br/>
+
+                            <button className="btn btn-primary" onClick={() => {
+                                this.props.history.push("/login");
+                            }}>
+                                Login
+                            </button>
+
                         </div>
                     </form>
                 </div>
@@ -179,4 +190,5 @@ class Signup extends Component {
     }
 }
 
-export default Signup;
+//export default Signup;
+export default withRouter(Signup);

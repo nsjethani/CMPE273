@@ -73,7 +73,7 @@ class NewerHomePage extends Component {
             <div className="container-fluid">
                 <Route exact path="/" render={() => (
                     <div>
-                        <h2>Dropbox</h2>
+                        {/*<h2>Dropbox</h2>
                         <hr/>
                         <button className="btn btn-success" onClick={() => {
                             this.props.history.push("/login");
@@ -86,7 +86,12 @@ class NewerHomePage extends Component {
                             this.props.history.push("/signup");
                         }}>
                             Sign Up
-                        </button>
+                        </button>*/}
+
+                        <div>
+                            <Login handleSubmit={this.handleSubmit}/>
+                            <Message message={this.state.message}/>
+                        </div>
 
                     </div>
                 )}/>

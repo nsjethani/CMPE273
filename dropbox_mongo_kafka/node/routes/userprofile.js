@@ -40,7 +40,8 @@ var saveUserProfile =  function (data,res) {
 };
 
 var fetchUserProfile=function (req,res){
-    var data = {id:req.session.user._id}
+   var data = {id:req.session.user._id}
+    //var data = {id:'59fa601cfe8f8c15a42cf566'}
     kafka.make_request('getprofile_topic',data, function(err,results){
         console.log("I got this result back after fetching user profile",results);
         if(err){

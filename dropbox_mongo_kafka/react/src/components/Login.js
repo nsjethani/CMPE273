@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+import { Route, withRouter } from 'react-router-dom';
+
 class Login extends Component {
 
     static propTypes = {
@@ -18,6 +20,7 @@ class Login extends Component {
             password: ''
         });
     }
+
 
     render() {
         return (
@@ -63,6 +66,16 @@ class Login extends Component {
                                 onClick={() => this.props.handleSubmit(this.state)}>
                                 Submit
                             </button>
+                            <br/>
+                            <br/>
+
+                            &nbsp;
+
+                            <button className="btn btn-primary" onClick={() => {
+                                this.props.history.push("/signup");
+                            }}>
+                                Sign Up
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -71,4 +84,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);

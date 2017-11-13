@@ -835,9 +835,15 @@ export class createDir extends Component{
                         </MobileTearSheet>
                     </div>
                     <div className="col-xs-6 col-md-6 col-sm-6">
-                        <div>
-                        <button onClick={()=> {this.create('group')}}>create group</button>
-                        </div>
+                        <table>
+                        <tr>
+                            <button style={f1} className="btn btn-primary" onClick={()=> {this.create('group')}}>create group</button>
+                        </tr>
+                        <tr>
+                            <h3 style={f1}>My Groups</h3>
+                        </tr>
+                          </table>
+
                             <div>
                             <Modal show={this.state.show_modal_group} onHide={() => {
                                 this.close('group')
@@ -845,6 +851,10 @@ export class createDir extends Component{
 
                                 <Modal.Body>
                                     <p>Enter comma seperated emails to create a group</p>
+                                    Group Name :
+                                    <input type="text"/>
+                                    <br/>
+                                    Email:
                                     <input type='email' onChange={(event) => {
                                         const address=event.target.value
                                         this.setState({
@@ -854,6 +864,7 @@ export class createDir extends Component{
                                     }}
                                     />
                                     &nbsp; &nbsp;
+                                    <br/>
                                     <button onClick={() =>this.createGroup(this.state.group_address)}>Create</button>
                                 </Modal.Body>
                                 <Modal.Footer>

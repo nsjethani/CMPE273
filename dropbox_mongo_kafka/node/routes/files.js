@@ -39,7 +39,7 @@ router.post('/upload', upload.any(), function (req, res, next) {
 
     console.log("Data to be inserted in files collection while uploading file ",filedata)
 
-        var data = {logdata:logdata,filedata:filedata}
+    var data = {logdata:logdata,filedata:filedata}
     kafka.make_request('upload_topic',data, function(err,results){
         console.log("I got this result back file upload",results);
         if(err){
