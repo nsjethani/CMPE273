@@ -21,7 +21,7 @@ public class FileService {
             file = new File( strName);
         } else {
             System.out.println("in else");
-            System.out.println("path is "+"D:/uploads" + "/" + path + "/" + strName);
+            System.out.println("path is :" + path + "/" + strName);
             file = new File( path + "/" + strName);
         }
 

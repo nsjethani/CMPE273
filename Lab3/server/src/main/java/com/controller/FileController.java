@@ -256,15 +256,18 @@ public class FileController {
     @PostMapping(path = "/getShareFiles")
     public ResponseEntity<?> getDataSharedWithUser(HttpSession session) {
         System.out.println("In share file");
+        String username = session.getAttribute("name").toString();
+        List<ShareData> sharedDetailsList = shareService.findBySharedWith(username);
+        List<FileDetails> fileList = new ArrayList<FileDetails>();
         try {
             if (session.getAttribute("name") != null) {
 
-                String username = session.getAttribute("name").toString();
+
                 System.out.println("In get DataSharedWithUser: " + username);
-                List<ShareData> sharedDetailsList = shareService.findBySharedWith(username);
+
                 if(sharedDetailsList.size()>0){
                     System.out.println("your share list is "+sharedDetailsList);
-                    List<FileDetails> fileList = new ArrayList<FileDetails>();
+
                     for(ShareData shared : sharedDetailsList){
                         fileList.add(fileService.findById(shared.getSharedItem()));
                     }
@@ -273,7 +276,7 @@ public class FileController {
                     return new ResponseEntity(fileList, HttpStatus.OK);
                 }
                 else {
-                    return new ResponseEntity(null, HttpStatus.NO_CONTENT);
+                    return new ResponseEntity(fileList, HttpStatus.NO_CONTENT);
                 }
 
             } else {
@@ -386,7 +389,7 @@ public class FileController {
                 return new ResponseEntity(null, HttpStatus.NON_AUTHORITATIVE_INFORMATION);
             }
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             return new ResponseEntity(null, HttpStatus.NO_CONTENT);
         }
     }

@@ -200,11 +200,15 @@ var bcolor={backgroundColor:"#f7f7f9",textAlign:"left"}
         getlogs = () =>
             API.getlogs()
                 .then((res) => {
-                    if (res.status === '201') {
-                        console.log(res.LogList);
-                        this.setState({
-                            logs: res.LogList
-                        });
+                    console.log("response here is  ",res)
+                    if (res.status === 201) {
+                        res.json().then((data)=>{
+                            console.log("Got data from logs",data)
+                            this.setState({
+                                logs: data
+                            });
+                        })
+
                     }
                 })
 
@@ -411,6 +415,7 @@ var bcolor={backgroundColor:"#f7f7f9",textAlign:"left"}
                     console.log("delete file status ",status)
                     if (status.status === 200) {
                         this.getfile(u_path);
+                        this.getStareFile();
                     }
                     else if (status.status === 204) {
                         alert("some error occurred")
@@ -478,10 +483,10 @@ var bcolor={backgroundColor:"#f7f7f9",textAlign:"left"}
                                             <div style={bcolor}>
 
                                                     <div style={bcolor} role="alert">
-                                                        <div style={mr80}>File Name : { log.filename } </div>
-                                                        <div>  <span>Operation : {log.operation}</span></div>
+                                                        <div style={mr80}>File Name : { log.file_name } </div>
+                                                        <div>  <span>Operation : {log.action_type}</span></div>
                                                         <div>
-                                                            <span aria-hidden={true}>Date Time : {log.inserttime}</span>
+                                                            <span aria-hidden={true}>Date Time : {(new Date(log.creation_time)).toUTCString()}</span>
                                                         </div>
                                                         <br/>
                                                     </div>
@@ -693,7 +698,7 @@ var bcolor={backgroundColor:"#f7f7f9",textAlign:"left"}
                             }}>
 
                                 <Modal.Body>
-                                    <p>Enter comma seperated emails to share file</p>
+                                    <p>Enter semicolon seperated emails to share file</p>
                                     <input type='email' onChange={(event) => {
                                         const address=event.target.value
                                         this.setState({

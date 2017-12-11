@@ -122,9 +122,7 @@ export const getlogs =(payload) =>
             'Content-Type': 'application/json'
         },credentials:'include',
         body: JSON.stringify(payload)
-    }).then(res => res.json())
-        .then(res =>{
-            //debugger;
+    }).then(res =>{
             console.log(res);
             return res;
         })

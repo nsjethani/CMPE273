@@ -51,8 +51,8 @@ class Signup extends Component {
                 fieldValidationErrors.email = emailValid ? '' : ' is invalid';
                 break;
             case 'password':
-                //passwordValid = value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
-                passwordValid = true;
+                passwordValid = value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
+                //passwordValid = true;
                 fieldValidationErrors.password = passwordValid ? '': ' must include one lowercase character, one uppercase character, a number, and a special character and should be 8 characters long.';
                 break;
             case 'firstname':
