@@ -2,10 +2,7 @@ import React,{Component} from 'react';
 import * as API from '../api/API';
 import MobileTearSheet from '../MobileTearSheet';
 import {List, ListItem} from 'material-ui/List';
-import TextField from 'material-ui/TextField';
 import Avatar from 'material-ui/Avatar';
-import FileFolder from 'material-ui/svg-icons/file/folder';
-import ActionAssignment from 'material-ui/svg-icons/action/assignment';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import {blue500} from 'material-ui/styles/colors';
 import FileDownload from 'react-file-download';
@@ -22,89 +19,6 @@ var f1={float:"left"}
 
 var bcolor={backgroundColor:"#f7f7f9",textAlign:"left"}
 
-/*
-class ModalExample extends React.Component {
-
-    state = {open:false
-    }
-
-    render(){
-        let closeModal = () => this.setState({ open: false })
-
-        let handleClick = () => this.setState({open:true});
-
-
-        return (
-            <div>
-                <button type='button' onClick={handleClick}>Launch modal</button>
-                <div  data-backdrop="false" >
-                <Modal
-
-                    show={this.state.open}
-                    onHide={closeModal}
-                    aria-labelledby="ModalHeader"
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title id='ModalHeader'>A Title Goes here</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <p>Some Content here</p>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        // If you don't have anything fancy to do you can use
-                        // the convenient `Dismiss` component, it will
-                        // trigger `onHide` when clicked
-                        <Modal.Dismiss className='btn btn-default'>Cancel</Modal.Dismiss>
-
-                        // Or you can create your own dismiss buttons
-                    </Modal.Footer>
-                </Modal>
-</div>
-            </div>
-        )
-    }
-}
-*/
-
-/*
-export class createDir extends Component{
-
-    state = {
-        dirname: '',
-        ComponenetToBeRendered: '1',
-
-    };
-
-    componentWillMount(){
-        this.setState({
-            dirname: '',
-            isNotEmpty: true
-        });
-    }
-
-    render()
-    {
-        return(
-
-            <div>
-                <input className="form-control"
-                       type="text"
-                       label="Folder Name"
-                       placeholder="Folder"
-                       value={this.state.dirname}
-                       onChange={(event) => {
-                           this.setState({
-                               dirname: event.target.value,
-                               isNotEmpty : false
-                           });
-                       }}
-                />
-                <button disabled={this.state.isNotEmpty}>Create</button>
-            </div>
-        )
-    }
-}
-*/
 
     export class MainLayout extends Component{
 
@@ -115,6 +29,7 @@ export class createDir extends Component{
                 child1: UserProfile,
                 enableView: 1,
                 files: [],
+                sharedFiles : [],
                 staredList: [],
                 origStaerdList: [],
                 logs: [],
@@ -136,7 +51,7 @@ export class createDir extends Component{
         componentWillMount(){
 
             var userid = localStorage.getItem("userid");
-            var rootdir = "D:/uploads/"+localStorage.getItem("rootdir");
+            var rootdir = "./uploads/"+localStorage.getItem("rootdir");
 
             this.setState({
                 child1: UserProfile,
@@ -147,8 +62,55 @@ export class createDir extends Component{
 
             this.getfile(rootdir);
             this.getlogs();
-
+            this.getShareFile();
+            this.getStareFile()
         }
+
+        getStareFile= () =>{
+            API.getStarFiles()
+                .then((res) => {
+                    console.log("response in get starred files is ",res)
+                    if (res.status === 201) {
+                        res.json().then((data)=> {
+                            console.log("data is ", data)
+                            this.setState({
+                                staredList : data,
+                                origStaerdList : data
+                            });
+                        })}
+                    else if(res.status===204)
+                    {
+
+                        console.log("got 204 status in starred files")
+                        this.setState({
+                            origStaerdList: []
+                        });
+                    }
+                });
+        };
+
+
+        getShareFile= () =>{
+            API.getShareFiles()
+                .then((res) => {
+                    console.log("response in get shared files is ",res)
+                    if (res.status === 200) {
+                        res.json().then((data)=> {
+                            console.log("data is ", data)
+                            this.setState({
+                                sharedFiles : data
+                            });
+                        })}
+                    else if(res.status===204)
+                    {
+
+                        console.log("got 204 status")
+                        this.setState({
+                            sharedFiles: []
+                        });
+                    }
+                });
+        };
 
         create = (data) => {
             if(data=='group')
@@ -216,9 +178,7 @@ export class createDir extends Component{
                             console.log("data is ", data)
 
                             this.setState({
-                                files: data.files,
-                                staredList: data.staredList,
-                                origStaerdList: data.staredList
+                                files: data.files
                             });
                         })}
                     else if(res.status===204)
@@ -234,10 +194,8 @@ export class createDir extends Component{
                         }
 
                         this.getStars();
-
-
-
         };
+
 
         getlogs = () =>
             API.getlogs()
@@ -342,36 +300,60 @@ export class createDir extends Component{
 
         };
 
-        shareButton = (name,path,isdir) =>
+        shareButton = (name) =>
         {
-            var file_detail = {
-               name:name,
-               path:path,
-               isdir:isdir
-            }
             this.setState({
                 show_modal:true,
                 share_enable:false,
-                file_to_share:file_detail
+                file_to_share:name
                 })
         }
 
 
         shareFile = (address) =>{
             console.log("In share file at react side")
-            API.check_emails({'emails':address,'file':this.state.file_to_share})
-                .then((res) =>{
-                    if(res.status=='201'){
-                            var data  = {'file_to_share':this.state.file_to_share,'emails':address};
-                            /*API.share(data).then((res)=>{
 
-                            });
-                        }*/
-                        this.setState({
-                            file_to_share:{}
-                        });
-                    }
-                });
+            if (address === null) {
+                console.log("User cancelled the prompt.");
+            }
+            else {
+                address = address.trim();
+                if(address === "")
+                {
+                    console.log("User cancelled the prompt.");
+                }
+                else {
+                    let sharingIds;
+                    sharingIds = address.split(";");
+                    let data = {
+                        userdata:[],
+                        itemid: this.state.file_to_share
+                    };
+                    sharingIds.every((id) => {
+                        if (id === "") {
+                            sharingIds.splice(sharingIds.indexOf(id), 1);
+                            return id;
+                        }
+                        data.userdata.push(id);
+                        return id;
+                    });
+                    console.log(data);
+                    API.doShareData(data).then((response) => {
+                        //alert("i am back")
+                        console.log("status is ",response.status);
+                        if(response.status === 200){
+
+                            alert("Shared successfully")
+                            this.close('share')
+                        }
+                        else if (response.status === 301){
+                            this.close('share')
+                            alert("File has been already share with this user.")
+
+                        }
+                    });
+                }
+            }
         }
 
         createGroup = (address) =>{
@@ -393,13 +375,15 @@ export class createDir extends Component{
                         'isdir':isdir
             };
             if(checked){
-                API.markStar(data).then((res) => {
+                API.markStar({id:fid,status:true}).then((res) => {
                     this.getfile(u_path);
+                    this.getStareFile();
                 });
             }
             else{
-                API.unmarkStar(data).then((res) => {
+                API.unmarkStar({id:fid,status:false}).then((res) => {
                     this.getfile(u_path);
+                    this.getStareFile();
                 });
             }
         };
@@ -415,19 +399,21 @@ export class createDir extends Component{
             }
         }*/
 
-        deletefile= (fid,fname) =>{
+        deletefile= (file) =>{
             let u_path="";
             if(this.state.pathHistory.length>0){
                 u_path = (this.state.pathHistory[this.state.pathHistory.length-1]);
             }else{
                 u_path = (this.state.rootdir);
             }
-            var data = {'file_id':fid,fname:fname};
-            API.deletefile(data)
+            API.deletefile(file)
                 .then((status) => {
                     console.log("delete file status ",status)
-                    if (status.status === '201') {
+                    if (status.status === 200) {
                         this.getfile(u_path);
+                    }
+                    else if (status.status === 204) {
+                        alert("some error occurred")
                     }
                 });
         };
@@ -643,10 +629,10 @@ export class createDir extends Component{
                                             <td>
                                                 <Checkbox checked={file.isStar} value={file.path} onChange={(e) => this.handleStar(e,file.id,file.name,file.path,false)} >Star</Checkbox>      </td>
                                             <td>
-                                                <button className="btn btn-outline-danger" onClick={() => {if(window.confirm('Delete the file/folder?')) {this.deletefile(file.id,file.name)};}}>Delete</button>
+                                                <button className="btn btn-outline-danger" onClick={() => {if(window.confirm('Delete the file/folder?')) {this.deletefile(file)};}}>Delete</button>
                                             </td>
                                             <td>
-                                                <button className="btn btn-success" onClick={() => this.shareButton(file.name,file.path,file.isdir) }>Share</button>
+                                                <button className="btn btn-success" onClick={() => this.shareButton(file.id) }>Share</button>
                                             </td>
                                         </tr>
                                         )
@@ -660,14 +646,43 @@ export class createDir extends Component{
                                                 <Checkbox checked={file.isStar} value={file.path} onChange={(e) => this.handleStar(e,file.id,file.name,file.path,true)} >Star</Checkbox>
                                             </td>
                                             <td>
-                                                <button className="btn btn-outline-danger" onClick={() => {if(window.confirm('Delete the file/folder?')) {this.deletefile(file.id,file.name)};}}>Delete</button>
+                                                <button className="btn btn-outline-danger" onClick={() => {if(window.confirm('Delete the file/folder?')) {this.deletefile(file)};}}>Delete</button>
                                             </td>
                                             <td>
-                                                <button className="btn btn-success" onClick={() => this.shareButton(file.name,file.path,file.isdir) }>Share</button>
+                                                <button className="btn btn-success" onClick={() => this.shareButton(file.id) }>Share</button>
                                             </td>
                                         </tr>
                                         )
                                     )}
+
+                            </table>
+
+                            <h3 style={tablestyle}>
+                                Files shared with you
+                            </h3>
+                            <div  style={tablestyle}> <button className="btn btn-primary"   onClick={() => this.getBack()}>
+                                Back
+                            </button></div>
+                            <hr/>
+                            <table className="table" style={tablestyle}>
+                                {this.state.sharedFiles.map(file=>
+                                    (file.type==='d') ?
+                                        (
+                                            <tr>
+                                                <td>
+                                                    <button className="btn btn-outline-primary" onClick={()=>this.onFolderClick(file.path, file.name)}>{file.name}</button>
+                                                </td>
+                                            </tr>
+                                        )
+                                        :(
+                                            <tr>
+                                                <td>
+                                                    <a href={file.path+'/'+file.name} download>{file.name}</a>
+                                                </td>
+
+                                            </tr>
+                                        )
+                                )}
 
                             </table>
                         </div>

@@ -22,9 +22,9 @@ public class FileDetails {
 
     private String ownerusername;
 
-    private String starred;
+    private boolean starred = false;
 
-    private String sharedstatus;
+    private boolean sharedstatus = false;
 
     public String getName() {
         return name;
@@ -38,19 +38,19 @@ public class FileDetails {
         this.id = id;
     }
 
-    public String getStarred() {
+    public boolean getStarred() {
         return starred;
     }
 
-    public void setStarred(String starred) {
+    public void setStarred(boolean starred) {
         this.starred = starred;
     }
 
-    public String getSharedstatus() {
+    public boolean getSharedstatus() {
         return sharedstatus;
     }
 
-    public void setSharedstatus(String sharedstatus) {
+    public void setSharedstatus(boolean sharedstatus) {
         this.sharedstatus = sharedstatus;
     }
 

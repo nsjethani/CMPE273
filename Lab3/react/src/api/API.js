@@ -53,10 +53,9 @@ export const uploadFile = (payload) =>
         body: payload
     }
     ).then(res => {
-        console.log("My response is ",JSON.stringify(res))
+        console.log("My response in upload file is ",JSON.stringify(res))
         return res;
     }).catch(error => {
-        debugger
         console.log(payload)
         console.log("This is error while file upload ", error.message);
         return error;
@@ -79,9 +78,44 @@ export const getfiles =(payload) =>
             return error;
         });
 
+export const getShareFiles =(payload) =>
+
+    fetch(`${api}/file/getShareFiles`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },credentials:'include',
+        body: JSON.stringify(payload)
+    }).then(res =>{
+        return res;
+    })
+        .catch(error => {
+            console.log("This is error while getting share files . ");
+            return error;
+        });
+
+
+export const getStarFiles =(payload) =>
+
+    fetch(`${api}/file/getStarData`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },credentials:'include',
+        body: JSON.stringify(payload)
+    }).then(res =>{
+        return res;
+    })
+        .catch(error => {
+            console.log("This is error while getting share files . ");
+            return error;
+        });
+
 export const getlogs =(payload) =>
 
-    fetch(`${api}/getlogs`, {
+    fetch(`${api}/logs/filelogs`, {
         method: 'POST',
         headers: {
             ...headers,
@@ -90,7 +124,7 @@ export const getlogs =(payload) =>
         body: JSON.stringify(payload)
     }).then(res => res.json())
         .then(res =>{
-            debugger;
+            //debugger;
             console.log(res);
             return res;
         })
@@ -198,7 +232,7 @@ export const fetchUserProfile = (payload) =>
         });
 
 export const markStar = (payload) =>
-    fetch(`${api}/star`, {
+    fetch(`${api}/file/changeStar`, {
         method: 'POST',
         headers: {
             ...headers,
@@ -217,7 +251,7 @@ export const markStar = (payload) =>
 
 
 export const unmarkStar = (payload) =>
-    fetch(`${api}/unstar`, {
+    fetch(`${api}/file/changeStar`, {
         method: 'POST',
         headers: {
             ...headers,
@@ -235,7 +269,7 @@ export const unmarkStar = (payload) =>
         });
 
 export const deletefile = (payload) =>
-    fetch(`${api}/deletefile`, {
+    fetch(`${api}/file/deletefile`, {
         method: 'POST',
         headers: {
             ...headers,
@@ -243,8 +277,7 @@ export const deletefile = (payload) =>
         },
         body: JSON.stringify(payload),
         credentials:'include'
-    }).then(res => res.json())
-        .then(res =>{
+    }).then(res =>{
             return res;
     })
         .catch(error => {
@@ -270,7 +303,22 @@ export const check_emails = (payload) =>
             return error;
         });
 
-
+export const doShareData = (payload) =>
+    fetch (`${api}/file/share`,
+        {
+            method: 'POST',
+            headers: {
+                ...headers,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload),
+            credentials: 'include'
+        }).then(res => {
+        return res;
+    }).catch(error => {
+        console.log("Error: " + error);
+        return error;
+    });
 
 
 

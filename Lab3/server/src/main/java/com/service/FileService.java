@@ -33,11 +33,54 @@ public class FileService {
         return true;
     }
 
-    public void addData(FileDetails data){
-        fileRepository.save(data);
+    public FileDetails addData(FileDetails data){
+       return fileRepository.save(data);
     }
 
     public List<FileDetails> findByPath(String username){
         return fileRepository.findByPath(username);
+    }
+
+    public int changeSharedStatus(int itemId, boolean status){
+        return fileRepository.updateSharedStatus(itemId, status);
+    }
+
+    public List<FileDetails> findByOwnerusernameAndStarred(String username, boolean status){
+        return fileRepository.findByOwnerusernameAndStarred(username, status);
+    }
+
+    public int changeStarredStatus(int itemId, boolean status){
+        return fileRepository.updateStarredStatus(itemId, status);
+    }
+
+    public FileDetails findById(int id){
+        return fileRepository.findById(id);
+    }
+
+    public void deleteItem(FileDetails data){
+        fileRepository.delete(data);
+    }
+
+    public void deleteRecur(File file){
+
+        for (File childFile : file.listFiles()) {
+
+            if (childFile.isDirectory()) {
+                deleteRecur(childFile);
+            } else {
+                if (!childFile.delete()) {
+                    System.out.println("error in recursion");
+                }
+            }
+        }
+
+        if (!file.delete()) {
+            System.out.println("error in recursion 1");
+
+        }
+    }
+
+    public void deleteFolderEntry(String path){
+        fileRepository.deleteByPathLike(path);
     }
 }

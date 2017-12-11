@@ -32,9 +32,12 @@ public class UserController {
     public  ResponseEntity<?> addNewUser (@RequestBody User user) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
+        String receivedPass = user.getPassword();
+        String newPass = userService.generateHash(receivedPass);
+        user.setPassword(newPass);
         userService.addUser(user);
         System.out.println("user is "+user.getId());
-        fileService.createFile(String.valueOf(user.getId()), "", -1);
+        fileService.createFile(String.valueOf(user.getId()), "./uploads/", -1);
         System.out.println("Saved");
         return new ResponseEntity(null,HttpStatus.CREATED);
     }
@@ -54,14 +57,18 @@ public class UserController {
     public ResponseEntity<?> login(@RequestBody String user, HttpSession session)
     {
         JSONObject jsonObject = new JSONObject(user);
-        List<User> userList = userService.login(jsonObject.getString("username"),jsonObject.getString("password"));
+        System.out.println("password is ");
+        System.out.println(userService.generateHash(jsonObject.getString("password")));
+
+        List<User> userList = userService.login(jsonObject.getString("username"),userService.generateHash(jsonObject.getString("password")));
+
+        System.out.println("user length is "+userList);
+
         session.setAttribute("name",jsonObject.getString("username"));
         if(userList.size()>0)
             session.setAttribute("id",userList.get(0).getId());
-        return new ResponseEntity(userService.login(jsonObject.getString("username"),jsonObject.getString("password")),HttpStatus.OK);
+        return new ResponseEntity(userService.login(jsonObject.getString("username"),userService.generateHash(jsonObject.getString("password"))),HttpStatus.OK);
     }
-
-
 
     @PostMapping(value = "/logout")
     @ResponseStatus(HttpStatus.NO_CONTENT)
